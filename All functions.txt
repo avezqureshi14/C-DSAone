@@ -1,0 +1,1137 @@
+saecomp11
+Inorder Traversal Print the BST in a Sorted Order
+1] racecar, abca check whether they are palindrome and say regarding the time complexity 🔴
+
+Funtion : isPalindrome()
+return = bool
+input = string,left, right
+
+bool isPalindrome(string s, int left, int right) 
+{
+    if (left >= right) //condition for single thing //base case
+    {
+        return true;
+    }
+    if(s[left] != s[right])
+    {
+        return false;
+    }
+
+    return isPalin(s,left + 1, right - 1);
+    
+}
+
+2]Find the powerset of abc and say regarding the time complexity 🔴
+Function : powerSet()
+return = void
+input = string
+default input = int index = 0, string curr = "" 
+
+void powerSet(string s, int index = 0, string current = "")
+{
+    if (index == s.length())
+    {
+        cout<<current;
+    }
+    powerSet(s, index + 1, current + s[index]); //ek baar lene ka
+    powerSet(s, index + 1, current); //ek baar nahi lene ka
+    
+}
+
+3]Find the trapped rain water in {3, 1, 2, 4, 0, 1, 3, 2} and say regarding the time complexity 🔴
+
+
+int findWater(int arr[], int n)
+{
+
+    int water = 0;
+
+    int low = 0;
+    int high = n - 1;
+
+    int left_max = 0;
+    int right_max = 0;
+
+    while (low <= high)
+    {
+        if (arr[low] <= arr[high])
+        {
+            if (arr[low] > left_max)
+            {
+                left_max = arr[low];
+            }
+            else
+            {
+                water += (left_max - arr[low]);
+            }
+            low++;
+        }
+        else
+        {
+            if (arr[high] > right_max)
+            {
+                right_max = arr[high];
+            }
+            else
+            {
+                water += (right_max - arr[high]);
+            }
+            high--;
+        }
+    }
+    return water;
+}
+
+4]Sort using Bubble Sort [ 1,88,7,5 ] and say regarding the time complexity 🔴
+
+void bubbleSort(int arr[], int n)
+{
+    bool swapped;
+    for (int i = 0; i < n - 1 ; i++)
+    {
+        swapped = false;
+        for (int j = 0; j < n - i - 1; j++)
+        {
+            if (arr[j] > arr[j+1])
+            {
+                swap(&arr[j],&arr[j+1]);
+                swapped = true;
+            }
+        }
+
+        if(swapped == false)
+        {
+            break;
+        }
+    }
+}
+
+5]Sort using Insertion Sort [ 8,4,1,5,9,2 ]  and say regarding the time complexity 🔴
+
+void insertionSort(int arr[], int n)
+{
+    int temp;
+    for (int i = 1; i < n; i++)
+    {
+        temp = arr[i];
+        int j = i - 1;
+        while (j >= 0 && arr[j] > temp)
+        {
+            arr[j+1] = arr[j];
+            j--;
+        }
+        arr[j+1] = temp;
+        
+
+    }
+    
+}
+
+6]Sort using Selection Sort [ 4,1,9,2,3,6 ]   and say regarding the time complexity 🔴
+
+void selectionSort(int arr[], int n)
+{
+    for (int i = 0; i < n - 1; i++)
+    {
+        int min = i;
+        for (int j = i + 1; j < n; j++)
+        {
+            if (arr[j] < arr[min])
+                min = j;
+        }
+
+        if (min != i)
+        {
+            swap(&arr[min], &arr[i]);
+        }
+    }
+}
+
+7]Sort using Quick Sort [ 4, 6, 2, 5, 7, 9, 1, 3 ] and say regrading the time complexity 🔴
+
+void quickSort(int arr[], int low, int high)
+{
+    if (low < high)
+    {
+        int quickPivot = Partition(arr, low, high);
+        quickSort(arr, low, quickPivot - 1);
+        quickSort(arr, quickPivot + 1, high);
+    }
+}
+
+8]Find Minimum and Maximum element in an Array [ 1,88,7,5 ] 🔴
+
+void minNmax(int arr[], int n)
+{
+    int min, max;
+    if (n == 0)
+    {
+        cout<<"Empty array"<<endl;
+    }
+    if(n == 1)
+    {
+        min = arr[0];
+        max = arr[0];
+    }
+    else{
+        if (arr[1]>arr[0])
+        {
+            max = arr[1];
+            min = arr[0];
+        }
+        else{
+            max = arr[0];
+            min = arr[1];
+        }
+        for (int i = 2; i < n; i++)
+        {
+            if (arr[i]>max)
+            {
+                max = arr[i];
+            }
+            if (arr[i]<min)
+            {
+                min = arr[i];
+            }
+
+            
+            
+        }
+        
+        
+    }
+    cout << "Minimum element is " << min << endl;
+    cout << "Maximum element is " << max << endl;
+    
+}
+
+9] Find an element from the given array  {20,30,40,50,5,10} with Time Complexity O(logn) 🔴
+
+int modifiedBinarySearch(int arr[], int low, int high, int key)
+{
+    while (low <= high)
+    {
+        int mid = (low + high) / 2;
+        if (arr[mid] == key)
+        {
+            return mid;
+        }
+        if (arr[low] < arr[mid])
+        {
+            if (key >= arr[low] && key < arr[mid])
+            {
+                high = mid - 1;
+            }
+            else
+            {
+                low = mid + 1;
+            }
+        }
+        else
+        {
+            if (key <= arr[high] && key > arr[mid])
+            {
+                low = mid + 1;
+            }
+            else
+            {
+                high = mid - 1;
+            }
+        }
+    }
+
+    return -1;
+}
+
+10] Implement unordered set in C++ and run any of its four functions 🔴
+
+11] Count distinct elements in Set 🔴
+
+12] Union of a Set 🔴
+
+13] Intersection of Set 🔴
+
+14] Find Subarray with given Sum  🔴
+
+void SubArraySum(int arr[], int n, int sum)
+{
+
+    //Creating an Empty Map
+    unordered_map <int,int> map;
+
+    //Maintain sum of ELements
+    int curr_sum = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        curr_sum = curr_sum + arr[i];
+
+        if(curr_sum == sum)
+        {
+            cout<<"Sum of Indexes found between 0 and "<<i;
+        }
+        if(map.find(curr_sum - sum) != map.end() ) 
+        {
+            cout<<"Sum found between indexes "
+                <<map[curr_sum - sum] + 1 
+                <<" and "<<i<<endl;
+            return;
+        }
+
+        map[curr_sum] = i;
+    }
+
+    //If reached here, then no subarray exists
+    cout<<"No subarray of the given sum exists"<<endl;
+}
+
+15] Two Sum 🔴
+
+vector<int> TwoSum(vector<int> &nums, int sum)
+{
+    vector<int> ans;
+    unordered_map<int, int> map;
+    for (int i = 0; i < nums.size(); i++)
+    {
+        if (map.find(sum - nums[i]) != map.end())
+        {
+            ans.push_back(map[sum - nums[i]]);
+            ans.push_back(i);
+            return ans;
+        }
+
+        map[nums[i]] = i;
+    }
+    return ans;
+}
+
+16] Four Sum 🔴
+vector<vector<int>> fourSum(vector<int> &num, int target)
+{
+    vector<vector<int>> result;
+    if (num.empty())
+    {
+        return result;
+    }
+    int n = num.size();
+    sort(num.begin(), num.end());
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = i + 1; j < n; j++)
+        {
+            int target2 = target - num[j] - num[i];
+
+            int left = j + 1;
+            int right = n - 1;
+
+            while (left < right)
+            {
+                int twoSums = num[left] + num[right];
+                if (twoSums < target2)
+                {
+                    left++;
+                }
+                else if (twoSums > target2)
+                {
+                    right--;
+                }
+                else
+                {
+                    vector<int> quadruplet(4, 0);
+                    quadruplet[0] = num[i];
+                    quadruplet[1] = num[j];
+                    quadruplet[2] = num[left];
+                    quadruplet[3] = num[right];
+                    result.push_back(quadruplet);
+
+                    // Processing the duplicates which left will encounter
+                    while (left < right && num[left] == quadruplet[2])
+                    {
+                        ++left;
+                    }
+                    // Processing the duplicates which right will encounter
+                    while (left < right && num[right] == quadruplet[3])
+                    {
+                        --right;
+                    }
+                }
+            }
+
+            while (j + 1 < n && num[j + 1] == num[j])
+            {
+                ++j;
+            }
+        }
+        while (i + 1 < n && num[i + 1] == num[i])
+        {
+            ++i;
+        }
+    }
+
+    return result;
+}
+
+17] Largest Subarray with Sum equal to Zero 🔴
+
+int maxLen(int arr[], int n)
+{
+    unordered_map <int,int> map;
+    int maxi = 0;
+    int curr_sum = 0;
+    for (int i = 0; i < n; i++)
+    {
+        curr_sum += arr[i];
+        if (curr_sum == 0)
+        {
+            maxi = i + 1;
+        }
+        else{
+
+        if(map.find(curr_sum) != map.end())
+        {
+            maxi = max(maxi, i - map[curr_sum]);
+        }
+        else{
+        map[curr_sum] = i;
+        }
+            
+        }
+    }
+    return maxi;
+}
+
+18] Longest Consequtive Sequence 🔴
+
+int LongestSequence(vector<int>&nums)
+{
+    set<int> hashset;
+    for (int i : nums)
+    {
+        hashset.insert(i);
+    }
+
+    int longestStreak = 0;
+
+    for (int i : nums)
+    {
+        if (!hashset.count(i - 1)) // i is not the index it is number itself from the vector
+        {
+            int curr_num = i;
+            int curr_seq = 1;
+            while (hashset.count(curr_num + 1))
+            {
+                curr_num++;
+                curr_seq++;
+            }
+
+            longestStreak = max(longestStreak, curr_seq);
+        }
+    }
+    return longestStreak;
+}
+
+19] Longest Length of Substring Without Repeating Characters 🔴
+
+int LongestSubstring(string s)
+{
+ unordered_map <char,int> map;
+ int len = 0; 
+ int left = 0;
+ for (int right = 0; right < s.length(); right++)
+ {
+    if (map.find(s[right]) != map.end())
+    {
+        left = max(left, map[s[right]]+1);
+    }
+    map[s[right]] = right; //not adding else to this condition updates value in our Hashmap
+
+    len = max(len, right-left+1);
+    
+ }
+
+20] Linked List Creation, Traversal, Deletion, Insertion  🔴
+//Traversal
+void print(Node*n)
+{
+    while (n != NULL)
+    {
+        cout<<n->data<<"->";
+        n = n->next;
+    }
+    
+    
+}
+
+//Insertion after a given Node
+void pushafter(Node*prev_node, int new_data)
+{
+    Node*new_node = new Node();
+    new_node->data = new_data;
+    
+    //Jo pehle ka prev_node ka next tah usko abhi new_node ka next banao
+    //naya           //pehle
+    new_node->next = prev_node->next;
+    
+    //Aur abhi prev_node ka next kaun rahega ? Ans: new_node
+    prev_node->next = new_node;
+}
+
+// Insertion at end 
+void pushAtend(Node**head_ref, int new_data)
+{
+    Node*last;
+    Node*new_node = new Node();
+    new_node->data = new_data;
+    new_node->next = NULL;
+
+    while (last->next != NULL)
+    {
+        last =  last->next;
+
+    }
+
+    last->next = new_node;
+}
+
+//Deletion In a Node
+void deleteNode(Node**head_ref,int key )
+{
+    Node*admi = *head_ref;
+    Node*admi2 = NULL;
+
+    //If head node itself hold the key
+    if (admi != NULL && admi->data == key)
+    {
+        *head_ref = admi->next;
+        delete admi;
+        return;
+    }
+
+    else
+    {
+        while (admi != NULL && admi->data != key)
+        {
+            admi2 = admi;
+            admi = admi->next;        
+        }
+
+        //If key was not present in the linked list
+        if (admi == NULL)
+        {
+            cout<<"The given Key does not exist in the Linked List"<<endl;
+        }
+
+        //Unlink the node from Linked List
+        admi2->next = admi->next;
+
+
+        //Free memory
+        delete admi;
+
+
+        
+    
+    }
+    
+}
+
+21] Reversing a Linked List Iteratively and Recurssively 🔴
+
+void reverse(Node**head_ref)
+{
+    Node*curr = (*head_ref);
+    Node*prev = NULL;
+    while (curr!=NULL)
+    {
+       Node*temp = curr->next;
+       curr->next = prev;
+       prev = curr;
+       curr = temp; 
+    }
+    *head_ref =  prev;
+
+}
+
+22] Find Midpoint in Linked List (Palindrome Subpart) 🔴
+
+int Midpoint(Node *head)
+{
+    Node*fast = head;
+    Node*slow = head;
+    while (fast != NULL && fast->next != NULL)
+    {
+        fast = fast->next->next;
+        slow = slow->next;
+    }
+
+    return slow->data;
+}
+
+23] Find Palindrome Linked List 🔴
+
+bool Palindrome(Node*head){
+
+    Node*curr = head;
+    Node*last = reverse(head);
+    while (last != NULL)
+    {
+       if (curr->data != last->data) //Check for data not for a pointer
+       {
+        return false;
+       }
+       curr=curr->next;
+       last=last->next;
+        
+    }
+
+    return true;
+    
+
+
+}
+
+24] Detect Cycle in the Linked List  (Floyd's Cycle Detection Algorithm) 🔴
+
+Node* Detect(Node*head)
+{
+    Node*slow = head;
+    Node*fast = head;
+
+    while (fast != NULL && fast->next != NULL)
+    {
+        fast = fast->next->next;
+        slow = slow->next;
+        if (slow == fast)
+        {
+            cout<<"Loop Detected"<<endl;
+            return slow;
+        }
+        
+        
+    }
+
+    cout<<"No Loop Detected"<<endl;
+    return slow;
+
+
+    
+
+}
+
+25] Detect Point at which cycle starts in linked list (Floyd's Cycle Detection Algorithm) 🔴
+
+int DetectFirstNode(Node*head)
+{
+    Node*meet = Detect(head);
+    Node*start = head;
+    Node*front = head;
+
+    while (meet != start)
+    {
+        start = start->next;
+        meet = meet->next;
+
+
+    }
+
+    return start->data;
+    
+}
+
+26] Delete the cycle from the Linked List (Floyd's Cycle Detection Algorithm) 🔴
+
+void removeCycle(Node*head)
+{
+    Node*slow = head;
+    Node*fast = head;
+
+    do
+    {
+        slow = slow->next;
+        fast = fast->next->next;
+    } while (slow!=fast);
+
+    slow->next = NULL;
+    
+}
+27] Merge Two Sorted Linked List 🔴
+
+Node *mergeTwoLinkedLists(Node *l1, Node *l2)
+{
+    if (l1 == NULL)
+    {
+        return l2;
+    }
+    if (l2 == NULL)
+    {
+        return l1;
+    }
+    if (l1->data > l2->data)
+    {
+        swap(l1, l2);
+    }
+    Node *result = l1 ;
+    while (l1 != NULL && l2 != NULL)
+    {
+        Node *temp = NULL;
+        while (l1 != NULL && l1->data <= l2->data)
+        {
+            temp = l1;
+            l1 = l1->next;
+        }
+        temp->next = l2;
+        swap(l1, l2);
+    }
+    return result;
+}
+
+28] Implementation of Stack Using Arrays and Linked List 🔴
+
+29] Previous Smaller and Greater Element 🔴
+
+NAIVE SOLUTION ➡️
+void prevSmallerElement(int arr[], int n)
+{
+    cout<<"-1 ";
+
+    for (int i = 1; i < n; i++)
+    {
+        int j ;
+        for ( j = i; j >= 0; j--)
+        {
+            if (arr[j]<arr[i])
+            {
+                cout<<arr[j]<<" ";
+                break;
+            }
+            
+            
+        }
+
+            if (j == -1)
+            {
+                cout<<"-1 ";
+            }
+        
+    }
+    
+}
+
+OPTIMAL SOLUTION ➡️
+void prevSmaller(int arr[], int n)
+{
+    stack<int>s;
+
+    for (int i = 0; i < n; i++)
+    {
+        while (!s.empty() && s.top() >= arr[i]) //for prev greater element just change here the sign
+        {
+            s.pop();
+        }
+        if(s.empty())
+        {
+            cout<<"-1 ";
+        }
+        else{
+            cout<<s.top()<<" ";
+        }
+
+        s.push(arr[i]);
+        
+    }
+}
+
+30] Next Smaller and Greater Element 🔴
+
+NAIVE SOLUTION ➡️
+void nextSmallerElement(int arr[], int n)
+{
+
+    for (int i = 0; i < n; i++)
+    {
+        int j ;
+        for ( j = i+1; j < n; j++)
+        {
+            if (arr[j]<arr[i])
+            {
+                cout<<arr[j]<<" ";
+                break;
+            }
+
+
+            
+            
+        }
+
+        if (j == n)
+        {
+            cout<<-1<<" ";
+        }
+        
+
+        
+    }
+    
+}
+
+OPTIMAL SOLUTION ➡️
+void NextSmallerElement(int arr[], int n)
+{
+    stack<int> s;
+    for (int i = n-1; i >= 0 ; i--)
+    {
+
+        while (!s.empty() && s.top() >= arr[i])
+        {
+            s.pop();
+        }
+        if (s.empty())
+        {
+            cout << "-1 ";
+        }
+        else
+        {
+            cout << s.top() << " ";
+        }
+        s.push(arr[i]);
+    }
+}
+
+
+Binary Tree Creation
+
+class Node
+{
+public:
+    int data;
+    Node *left;
+    Node *right;
+
+    Node(int val)
+    {
+        this->data = val;
+        this->left = NULL;
+        this->right = NULL;
+    }
+};
+
+Node *CreateBinaryTree(Node *root)
+{
+    cout << "Enter data " << endl;
+    int data;
+    cin >> data;
+    root = new Node(data);
+    if (root->data == -1)
+    {
+        return NULL;
+    }
+
+    cout << "Enter the data for inserting in left of " << data << endl;
+    root->left = CreateBinaryTree(root->left);
+
+    cout << "Enter the data for inserting in right of " << data << endl;
+    root->right = CreateBinaryTree(root->right);
+
+    return root;
+}
+
+int main()
+{
+    Node *root = NULL;
+    root = CreateBinaryTree(root);
+    cout << "Printing Level Order Transversal " << endl;
+    LevelOrderTraversal(root);
+    return 0;
+}
+
+// 1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
+
+
+PreOrder, InOrder, PostOrder Traversal
+void printPreorder(Node*node)
+{
+    if (node==NULL)
+    {
+        return;
+    }
+
+    //N
+    cout<<node->data<<" ";
+    //L
+    printPreorder(node->left);
+    //R
+    printPreorder(node->right);
+
+    
+}
+
+
+void printInorder(Node*node)
+{
+    if (node==NULL)
+    {
+        return;
+    }
+
+    // L
+    printInorder(node->left);
+    // N
+    cout<<node->data<<" ";
+    // R
+    printInorder(node->right);
+
+    
+}
+
+
+void printPostorder(Node*node)
+{
+    if (node == NULL)
+    {
+        return;
+    }
+
+    //L
+    printPostorder(node->left);
+    //R
+    printPostorder(node->right);
+    //N
+    cout<<node->data<<" ";
+    
+}
+
+
+Level Order Traversal
+
+void LevelOrderTraversal(Node *root)
+{
+    queue<Node *> q;
+    // Push all the elements into the Queue
+    q.push(root);
+    q.push(NULL);
+
+    while (!q.empty())
+    {
+        Node *temp = q.front();
+        q.pop();
+
+        if (temp == NULL)
+        {
+            // purana levelcomplete traverse ho chuka hai
+            cout << endl;
+            if (!q.empty())
+              {
+                // queue still has some child nodes
+                q.push(NULL);
+            }
+        }
+        else
+        {
+            cout<<temp->data<<" ";
+
+            if (temp->left)
+            {
+                q.push(temp->left);
+            }
+
+            if (temp->right)
+            {
+                q.push(temp->right);
+            }
+        }
+    }
+}
+
+
+Height of Binary Tree
+int height(Node*node)
+{
+    //base case
+    if (node == NULL)
+    {
+        return 0;
+    }
+
+    int left = height(node->left);
+    int right = height(node->right);
+
+    int ans = max(left,right) + 1;
+    return ans;
+    //Time Complexity O(n)
+    //Space Complexity O(height )
+    //Worst Case Space Complexity O(n) for Skew Tree 
+}
+
+
+Balanced Binary Tree
+NAIVE
+bool isBalanced(Node*root)
+{
+    //base case
+    if (root == NULL)
+    {
+        return true;
+    }
+
+    bool left = isBalanced(root->left);
+    bool right = isBalanced(root->right);
+
+    bool diff = abs(height(root->left)) - height(root->right) <= 1;
+
+    if (left && right && diff)
+    {
+        return true;
+    }
+    else{
+        return false;
+    }
+    
+    
+}
+
+OPTIMAL
+pair<bool,int> isBalancedFast(Node*root)
+{
+    if (root==NULL)
+    {
+        pair<bool,int> p = make_pair(true,0);
+        return p;
+    }
+
+    pair<int,int> left = isBalancedFast(root->left);
+    pair<int,int> right = isBalancedFast(root->right);
+
+    bool leftAns = left.first;
+    bool rightAns = right.first;
+
+    bool diff = abs(left.second - right.second)<=1;
+
+    pair<bool,int> ans;
+    ans.second = max(left.second,right.second) + 1 ;
+    
+    if (leftAns && rightAns && diff)
+    {
+        ans.first = true;
+    }
+    else{
+        ans.first = false;
+    }
+    
+    return ans;
+}
+
+bool isBalanced(Node*root)
+{
+    return isBalancedFast(root).first;
+}
+
+
+Diameter of Balanced Tree
+pair<int,int> diameterFast(Node*root){
+    // base case 
+    if (root==NULL)
+    {
+        pair<int, int> p = make_pair(0,0);
+        return p;
+    }
+
+    pair<int,int> left = diameterFast(root->left); 
+    pair<int,int> right = diameterFast(root->right); 
+
+    int op1 = left.first; //finding the diameter of the left subtree
+    int op2 = right.first; //finding the diameter of the right subtree
+    int op3 = left.second + right.second + 1; //finding the height of the tree
+
+    pair<int,int> ans;
+
+    ans.first = max(op1,max(op2,op3));
+    ans.second = max(left.second, right.second) + 1;
+
+    return ans;
+}
+
+int diameter(Node*root){
+    return diameterFast(root).first;
+}
+
+
+Indentical Binary Tree
+bool isIdentical(Node*r1, Node*r2)
+{
+    //base case
+    if (r1 == NULL && r2 == NULL)
+    {
+        return true;
+    }
+    if (r1 == NULL && r2 != NULL)
+    {
+        return false;
+    }
+    if (r1 != NULL && r2 == NULL)
+    {
+        return false;
+    }
+
+    bool left = isIdentical(r1->left, r2->left);
+    bool right = isIdentical(r1->right, r2->right);
+
+    bool value = r1->data == r2->data;
+
+    if (left && right && value)
+    {
+        return true;
+    }
+    else{
+        return false;
+    } 
+    
+    
+    
+}
+Sum Tree
+
+
+pair <bool,int> isSumTreeFast(Node*root)
+{
+    //Base Cases
+    if (root == NULL)
+    {
+        pair<bool,int> p = make_pair(true,0);
+        return p;
+    }
+
+    if (root->left == NULL && root->right == NULL)
+    {
+        pair<bool,int> p = make_pair(true, root->data);
+        return p;
+    }
+
+    pair<bool,int> leftAns = isSumTreeFast(root->left);
+    pair<bool,int> rightAns = isSumTreeFast(root->right);
+
+    bool left = leftAns.first;
+    bool right = rightAns.first;
+
+    bool condition = root->data == leftAns.second + rightAns.second;
+
+    pair<bool,int> ans;
+
+    if (left && right && condition)
+    {
+        ans.first = true;
+        ans.second = root->data + leftAns.second + rightAns.second;
+    }
+    else{
+        ans.first = false;
+    }
+    return ans;
+    
+    
+    
+}
+
+bool isSumTree(Node* root)
+{
+    return isSumTreeFast(root).first;
+}

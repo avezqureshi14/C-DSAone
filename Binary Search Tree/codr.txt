@@ -1,0 +1,5 @@
+    while (root != NULL && root->data != val)
+    {
+        root = val < root->data ? root->left : root->right;
+    }
+    return root;
