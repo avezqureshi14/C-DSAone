@@ -38,6 +38,8 @@ Node *buildTree(Node *root)
     return root;
 }
 
+//ZigZag Traversal is nothing but SImilar to the LevelOrder Traversal
+
 vector <int> ZigZag(Node*root)
 {
     vector<int>result;
@@ -49,12 +51,13 @@ vector <int> ZigZag(Node*root)
     queue<Node*>q;
     q.push(root);
     
-    bool leftToright = true;
+    bool leftToright = true; //Assign the flag
 
     while (!q.empty())
     {
-        int size= q.size();
-        vector<int>ans(size );
+        int size= q.size(); 
+        vector<int>ans(size ); //Create a vector to store the ans which must be the size of  queue which you have created
+
         //Level Process
         for (int i = 0; i < size; i++)
         {
@@ -62,7 +65,7 @@ vector <int> ZigZag(Node*root)
             q.pop();
             
                
-            int index = leftToright ? i :size - i - 1;
+            int index = leftToright ? i :size - i - 1; //now placed the items from the front node in zigzag pattern in the ans , this will be done using index 
             ans[index] = frontNode->data;
 
             if(frontNode->left) //agar front node ka left non null hai toh push in queue 

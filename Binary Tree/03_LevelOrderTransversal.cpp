@@ -57,7 +57,7 @@ void LevelOrderTraversal(Node *root)
             cout << endl;
             if (!q.empty())
               {
-                // queue still has some child nodes
+                // queue still has some child Nodes
                 q.push(NULL);
             }
         }
@@ -65,12 +65,12 @@ void LevelOrderTraversal(Node *root)
         {
             cout<<temp->data<<" ";
 
-            if (temp->left) //agar temp ka left hai
+            if (temp->left) //agar temp ka left hai toh bache hue hamare tree ke elements ko queue meh push karo
             {
                 q.push(temp->left);
             }
 
-            if (temp->right) //agar temp ka right hai
+            if (temp->right) //agar temp ka right hai toh bache hue hamare tree ke elements ko queue meh push karo
             {
                 q.push(temp->right);
             }

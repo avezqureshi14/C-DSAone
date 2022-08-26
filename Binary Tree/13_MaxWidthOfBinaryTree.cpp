@@ -39,10 +39,11 @@ Node *buildTree(Node *root)
 // Small moves left
 // Greater moves right
 
-// Time Complexity is O()
+// Time Complexity is O(n)
+// Space Complexity is O(n)
 int widthOfBinaryTree(Node *root)
 {
-    if (root != NULL)
+    if (root == NULL)
     {
         return 0;
     }
@@ -52,13 +53,12 @@ int widthOfBinaryTree(Node *root)
     while (!q.empty())
     {
         int size = q.size();
-        int mmin = q.front().second;
+        int mmin = q.front().second; // keeps updating
         int first, last;
         for (int i = 0; i < size; i++)
         {
             int curr_id = q.front().second - mmin;
-            Node *node = q.front().first;
-            q.pop();
+            Node *node = q.front().first; //to get ready to input further two nodes index in out queue
             if (i == 0)
             {
                 first = curr_id;
@@ -67,6 +67,7 @@ int widthOfBinaryTree(Node *root)
             {
                 last = curr_id;
             }
+            q.pop();
             if (node->left)
             {
                 q.push({node->left, curr_id * 2 + 1});
@@ -76,11 +77,10 @@ int widthOfBinaryTree(Node *root)
                 q.push({node->right, curr_id * 2 + 2});
             }
 
-            ans = max(ans, last - first + 1);
+            ans = max(ans, last - first + 1); //after first iteration move out and check whether queue is empty
         }
-
-        return ans;
     }
+    return ans;
 }
 
 int main()
@@ -88,8 +88,8 @@ int main()
     Node *root = NULL;
 
     root = buildTree(root);
-    int val = 24;
-
+    int res = widthOfBinaryTree(root);
+    cout << "Width of the Binary Tree is " << res << endl;
     return 0;
 }
 

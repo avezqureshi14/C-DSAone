@@ -36,7 +36,7 @@ Node *buildTree(Node *root)
 }
 
 // Time Complexity is O(log 2n)
-//Just greater than the given key or equal to the given key
+//Just greater than the given key or equal to the given key, if the given key is present in the binary tree then just return that one or else return just greater than that
 int findCeil(Node *root, int key)
 {
     int ceil = -1;

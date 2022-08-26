@@ -84,6 +84,7 @@ int LCA(Node *root, int p, int q)
     return root->data;
 }
 
+
 int main()
 {
     Node *root = NULL;
