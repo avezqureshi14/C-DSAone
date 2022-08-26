@@ -298,14 +298,54 @@ vector<int> VerticalOrderTraversal(Node *root)
     return ans;
 }
 
+vector<int> TopView(Node *root)
+{
+    map<int, int> topNode;
+    queue<pair<Node *, int>> q;
+    vector<int> ans;
+
+    if (root == NULL)
+    {
+        return ans;
+    }
+
+    q.push(make_pair(root, 0));
+    while (!q.empty())
+    {
+        pair<Node *, int> temp = q.front();
+        q.pop();
+        Node *frontNode = temp.first;
+        int vd = temp.second;
+
+        if (topNode.find(vd) == topNode.end())
+        {
+            topNode[vd] = frontNode->data;
+        }
+        if (frontNode->left)
+        {
+            q.push(make_pair(frontNode->left, vd - 1));
+        }
+        if (frontNode->right)
+        {
+            q.push(make_pair(frontNode->right, vd + 1));
+        }
+    }
+
+    for(auto i : topNode){
+        ans.push_back(i.second);
+    }
+
+    return ans;
+}
 int main()
 {
     Node *root = NULL;
     root = buildTree(root);
 
-    vector<int>res = VerticalOrderTraversal(root);
-    for(auto i : res){
-        cout<<i<<" ";
+    vector<int> res = TopView(root);
+    for (auto i : res)
+    {
+        cout << i << " ";
     }
 
     return 0;
