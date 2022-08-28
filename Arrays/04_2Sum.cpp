@@ -12,7 +12,7 @@ vector<int>TwoSum(vector<int>nums,int target){
             ans.push_back(map[target-nums[i]]);
             ans.push_back(i);
         }
-        map[nums[i]]=i;
+        map[nums[i]]=i; //this is not the else condition you have to insert inside the set even if it is inserted before(duplicates are allowed)
         
     }
     return ans;
@@ -24,7 +24,10 @@ int main()
     vector<int> nums;
     nums.push_back(3);
     nums.push_back(4);
+    nums.push_back(4);
+    nums.push_back(4);
     nums.push_back(2);
+
     vector<int>res = TwoSum(nums,6);
     for(auto i : res){
         cout<<i<<" ";

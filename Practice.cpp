@@ -15,6 +15,13 @@ public:
     }
 };
 
+class ListNode
+{
+public:
+    int data;
+    ListNode *next;
+};
+
 Node *buildTree(Node *root)
 {
     int data;
@@ -331,24 +338,627 @@ vector<int> TopView(Node *root)
         }
     }
 
-    for(auto i : topNode){
+    for (auto i : topNode)
+    {
         ans.push_back(i.second);
     }
 
     return ans;
 }
+
+int KdanesMaximumSubarraySum(int arr[], int n)
+{
+    int final = INT_MIN, curr = 0;
+    for (int i = 0; i < n; i++)
+    {
+        curr = curr + arr[i];
+        if (curr > final)
+        {
+            final = curr;
+        }
+        if (curr < 0)
+        {
+            curr = 0;
+        }
+    }
+
+    return final;
+}
+
+int RemoveDuplicates(int arr[], int n)
+{
+    int i = 0;
+    for (int j = 0; j < n; j++)
+    {
+        if (arr[i] != arr[j])
+        {
+            i++;
+            arr[i] = arr[j];
+        }
+    }
+    return i + 1;
+}
+
+int findWater(int arr[], int n)
+{
+    int low = 0;
+    int high = n - 1;
+    int left_max = 0;
+    int right_max = 0;
+    int water = 0;
+    while (low <= high)
+    {
+        if (arr[low] < arr[high])
+        {
+            if (arr[low] > left_max)
+            {
+                left_max = arr[low];
+            }
+            else
+            {
+                water += left_max - arr[low];
+            }
+            low++;
+        }
+        else
+        {
+            if (arr[high] > right_max)
+            {
+                right_max = arr[high];
+            }
+            else
+            {
+                water += right_max - arr[high];
+            }
+            high--;
+        }
+    }
+    return water;
+}
+
+vector<int> TwoSum(vector<int> nums, int target)
+{
+    int n = nums.size();
+    vector<int> ans;
+    unordered_map<int, int> map;
+    for (int i = 0; i < n; i++)
+    {
+        if (map.find(target - nums[i]) != map.end())
+        {
+            ans.push_back(map[target - nums[i]]);
+            ans.push_back(i);
+        }
+        map[nums[i]] = i;
+    }
+    return ans;
+}
+
+vector<vector<int>> FourSum(vector<int> nums, int target)
+{
+    int n = nums.size();
+    vector<vector<int>> ans;
+    sort(nums.begin(), nums.end());
+    if (nums.empty())
+    {
+        return ans;
+    }
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = i + 1; j < n; j++)
+        {
+            int target2 = target - nums[j] - nums[i];
+            int left = j + 1;
+            int right = n - 1;
+            while (left < right)
+            {
+                int TwoSum = nums[left] + nums[right];
+                if (target2 > TwoSum)
+                {
+                    right--;
+                }
+                else if (target2 < TwoSum)
+                {
+                    left++;
+                }
+                else
+                {
+                    vector<int> quad(4, 0);
+                    quad[0] = nums[i];
+                    quad[1] = nums[j];
+                    quad[2] = nums[left];
+                    quad[3] = nums[right];
+                    ans.push_back(quad);
+
+                    while (left < right && nums[left] == quad[2])
+                    {
+                        ++left;
+                    }
+                    while (left < right && nums[right] == quad[3])
+                    {
+                        --right;
+                    }
+                }
+            }
+            while (j + 1 < n && nums[j + 1] == nums[j])
+            {
+                ++j;
+            }
+        }
+
+        while (i + 1 < n && nums[i + 1] == nums[i])
+        {
+            ++i;
+        }
+    }
+    return ans;
+}
+
+void PushAfter(ListNode *prev_node, int new_data)
+{
+    ListNode *new_node = new ListNode();
+    new_node->data = new_data;
+    new_node->next = prev_node->next;
+    prev_node->next = new_node;
+}
+
+void PushAtEnd(ListNode **head_ref, int new_data)
+{
+    ListNode *new_node = new ListNode();
+    new_node->data = new_data;
+    ListNode *last = (*head_ref);
+
+    while (last->next != NULL)
+    {
+        last = last->next;
+    }
+    last->next = new_node;
+    new_node->next = NULL;
+}
+
+void deleteNode(ListNode **head_ref, int key)
+{
+    ListNode *temp1 = *head_ref;
+    ListNode *temp2 = NULL;
+    if (temp1 != NULL && temp1->data == key)
+    {
+        *head_ref = temp1->next;
+        delete (temp1);
+    }
+
+    while (temp1->next != NULL && temp1->data != key)
+    {
+        temp2 = temp1;
+        temp1 = temp1->next;
+    }
+
+    temp2->next = temp1->next;
+    delete (temp1);
+}
+
+ListNode *Midpoint(ListNode *head_ref)
+{
+    ListNode *fast = head_ref;
+    ListNode *slow = head_ref;
+
+    while (fast != NULL && fast->next != NULL)
+    {
+        fast = fast->next->next;
+        slow = slow->next;
+    }
+    return slow->next;
+}
+
+ListNode *Reverse(ListNode *head_ref)
+{
+    ListNode *curr = Midpoint(head_ref);
+    ListNode *prev = NULL;
+
+    while (curr != NULL)
+    {
+        ListNode *temp = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = temp;
+    }
+    return prev;
+}
+
+bool isPalindrome(ListNode *head_ref)
+{
+    ListNode *curr = (head_ref);
+    ListNode *last = Reverse(head_ref);
+
+    while (last != NULL)
+    {
+        if (curr->data != last->data)
+        {
+            return false;
+        }
+        curr = curr->next;
+        last = last->next;
+    }
+
+    return true;
+}
+
+ListNode *Detect(ListNode *head)
+{
+    ListNode *slow = head;
+    ListNode *fast = head;
+
+    while (fast != NULL && fast->next != NULL)
+    {
+        slow = slow->next;
+        fast = fast->next->next;
+        if (slow == fast)
+        {
+            return slow;
+        }
+    }
+    return slow;
+}
+bool Detecting(ListNode *head)
+{
+    ListNode *slow = head;
+    ListNode *fast = head;
+
+    while (fast != NULL && fast->next != NULL)
+    {
+        slow = slow->next;
+        fast = fast->next->next;
+        if (slow == fast)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+int DetectFirstNode(ListNode *head)
+{
+    ListNode *meet = Detect(head);
+    ListNode *start = head;
+    while (meet != start)
+    {
+        meet = meet->next;
+        start = start->next;
+    }
+    return start->data;
+}
+void removeCycle(ListNode *head)
+{
+    ListNode *slow = head;
+    ListNode *fast = head;
+    do
+    {
+        slow = slow->next;
+        fast = fast->next->next;
+    } while (slow != fast);
+
+    slow->next = NULL;
+}
+
+ListNode *MergeTwoLinkedLists(ListNode *l1, ListNode *l2)
+{
+    if (l1 == NULL)
+    {
+        return l2;
+    }
+    if (l2 == NULL)
+    {
+        return l1;
+    }
+    ListNode *result = l1;
+
+    if (l1->data > l2->data)
+    {
+        swap(l1, l2);
+    }
+
+    while (l1 != NULL && l2 != NULL)
+    {
+        ListNode *temp = NULL;
+
+        while (l1 != NULL && l1->data <= l2->data)
+        {
+            temp = l1;
+            l1 = l1->next;
+        }
+
+        temp->next = l2;
+        swap(l1, l2);
+    }
+
+    return result;
+}
+
+int MaximumSubaraaySum(int arr[], int n)
+{
+    int curr_sum = 0;
+    int maxi = 0;
+    unordered_map<int, int> map;
+    for (int i = 0; i < n; i++)
+    {
+        curr_sum = curr_sum + arr[i];
+        if (curr_sum == 0)
+        {
+            maxi = i + 1;
+        }
+        else
+        {
+            if (map.find(curr_sum) != map.end())
+            {
+                maxi = max(maxi, i - map[curr_sum]);
+            }
+            else
+            {
+                map[curr_sum] = i;
+            }
+        }
+    }
+
+    return maxi;
+}
+
+string reverseString(string s)
+{
+    int n = s.length();
+    stack<char> cs;
+    for (int i = 0; i < n; i++)
+    {
+        char ch = s[i];
+        cs.push(ch);
+    }
+
+    string ans = "";
+    for (int i = 0; i < n; i++)
+    {
+        char ch = cs.top();
+        ans.push_back(ch);
+        cs.pop();
+    }
+    cout << "The reversed version is " << ans;
+    return ans;
+}
+
+void StackDelete(stack<int> &inputStack, int count, int n)
+{
+    if (count == n / 2)
+    {
+        inputStack.pop();
+        return;
+    }
+
+    int num = inputStack.top();
+    inputStack.pop();
+    StackDelete(inputStack, count + 1, n);
+    inputStack.push(num);
+}
+
+void StackDelete(stack<int> &inputStack, int size)
+{
+    int count = 0;
+    StackDelete(inputStack, count, size);
+}
+
+void print(ListNode *node)
+{
+    while (node != NULL)
+    {
+        cout << node->data << " ";
+        node = node->next;
+    }
+}
+
+void print(stack<int> s)
+{
+    while (!s.empty())
+    {
+        cout << s.top() << " ";
+        s.pop();
+    }
+}
+
+bool isValidParenthesis(string s)
+{
+    int n = s.length();
+    stack<char> stk;
+    for (int i = 0; i < n; i++)
+    {
+        char ch = s[i];
+        if (ch == '{' || ch == '[' || ch == '(')
+        {
+            stk.push(ch);
+        }
+        else
+        {
+            if (!stk.empty())
+            {
+                char top = stk.top();
+                if (top == '{' && ch == '}' || top == '[' && ch == ']' || top == '(' && ch == ')')
+                {
+                    stk.pop();
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
+    if (stk.empty())
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+// Input Stack must be by address
+void SolveInsertAtBottom(stack<int> &myStack, int x)
+{
+    if (myStack.empty())
+    {
+        myStack.push(x);
+        return;
+    }
+
+    int num = myStack.top();
+    myStack.pop();
+    SolveInsertAtBottom(myStack, x);
+
+    myStack.push(num);
+}
+
+stack<int> InsertAtBottom(stack<int> &myStack, int x)
+{
+    SolveInsertAtBottom(myStack, x);
+    return myStack;
+}
+
+void ReverseStack(stack<int> &stk)
+{
+    if (stk.empty())
+    {
+        return;
+    }
+
+    int num = stk.top();
+    stk.pop();
+    ReverseStack(stk);
+
+    SolveInsertAtBottom(stk, num);
+}
+
+void SortInserted(stack<int> &s, int x)
+{
+    if (s.empty() || s.top() < x)
+    {
+        s.push(x);
+        return;
+    }
+
+    int num = s.top();
+    s.pop();
+
+    SortInserted(s, x);
+    s.push(num);
+}
+
+void SortStack(stack<int> &s)
+{
+    if (s.empty())
+    {
+        return;
+    }
+    int store = s.top();
+    s.pop();
+    SortStack(s);
+
+    SortInserted(s, store);
+}
+
+bool isRedundant(string str)
+{
+    stack<int> s;
+    for (int i = 0; i < str.length(); i++)
+    {
+        char ch = str[i];
+        if (ch == '(' || ch == '+' || ch == '-' || ch == '/' || ch == '*')
+        {
+            s.push(ch);
+        }
+        else
+        {
+            if (ch == ')')
+            {
+                bool Redundant = true;
+                while (s.top() != '(')
+                {
+                    char top = s.top();
+                    if (top == '+' || top == '-' || top == '*' || top == '/')
+                    {
+                        Redundant = false;
+                    }
+                    s.pop();
+                }
+                if (Redundant == true)
+                {
+                    return true;
+                }
+                s.pop();
+            }
+        }
+    }
+
+    return false;
+}
+
+int MinCostToMakeString(string str)
+{
+    if (str.length() % 2 == 1)
+    {
+        return -1;
+    }
+    
+    stack<char> s;
+    for (int i = 0; i < str.length(); i++)
+    {
+        char ch = str[i];
+        if (ch == '{')
+        {
+            s.push(ch);
+        }
+        else
+        {
+            if (!s.empty() && s.top() == '{')
+            {
+                s.pop();
+            }
+            else
+            {
+                s.push(ch);
+            }
+        }
+    }
+    int a = 0, b = 0;
+    while (!s.empty())
+    {
+        if (s.top() == '{')
+        {
+            a++;
+        }
+        else
+        {
+            b++;
+        }
+
+        s.pop();
+    }
+
+    int ans = (a + 1) / 2 + (b + 1) / 2;
+    return ans;
+}
+
+// see
+// understand
+// dry run
+// write on paper
+// write on ide
+// derive in words
+
 int main()
 {
-    Node *root = NULL;
-    root = buildTree(root);
-
-    vector<int> res = TopView(root);
-    for (auto i : res)
-    {
-        cout << i << " ";
-    }
+    string s = "}}}{}{}}}";
+    int res = MinCostToMakeString(s);
+    cout << "The Minimum Cost to make a String is " << res << endl;
 
     return 0;
 }
-
-// 8 5 4 -1 -1 7 6 -1 -1 -1 12 10 -1 -1 14 13 -1 -1 -1

@@ -2,6 +2,8 @@
 #include <stack>
 using namespace std;
 
+//agar count ki value stack ke size/2 ka hua na toh delete karo aur jate time lekhar jao 
+
 void solve(stack<int> &inputStack, int count, int size)
 {
     // base case
@@ -44,6 +46,7 @@ int main()
     s.push(5);
 
     print(s);
+    cout<<endl;
     deleteMiddle(s, s.size());
     print(s);
 

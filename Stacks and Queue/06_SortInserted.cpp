@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stack>
 using namespace std;
+//Insert in Sorted Way
 void SortInserted(stack<int>&stack,int num)
 {
 

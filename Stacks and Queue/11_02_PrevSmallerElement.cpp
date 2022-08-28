@@ -8,7 +8,7 @@ void prevSmaller(int arr[], int n)
 
     for (int i = 0; i < n; i++)
     {
-        while (!s.empty() && s.top() >= arr[i]) //for prev greater element just change here the sign
+        while (!s.empty() && s.top() >= arr[i]) //for prev greater element just change here the sign.
         {
             s.pop();
         }

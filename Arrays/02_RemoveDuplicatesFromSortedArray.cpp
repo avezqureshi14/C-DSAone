@@ -2,6 +2,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+
+//Kitne elements unique teh woh return karne ka hai
 int removeDuplicates(int arr[], int n ){
     if (n == 0)
     {

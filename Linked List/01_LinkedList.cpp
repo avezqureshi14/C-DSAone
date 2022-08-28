@@ -53,37 +53,37 @@ void pushAtend(Node**head_ref, int new_data)
 //Deletion In a Node
 void deleteNode(Node**head_ref,int key )
 {
-    Node*admi = *head_ref;
-    Node*admi2 = NULL;
+    Node*temp1 = *head_ref;
+    Node*temp2 = NULL;
 
     //If head node itself hold the key
-    if (admi != NULL && admi->data == key)
+    if (temp1 != NULL && temp1->data == key)
     {
-        *head_ref = admi->next;
-        delete admi;
+        *head_ref = temp1->next;
+        delete temp1;
         return;
     }
 
     else
     {
-        while (admi != NULL && admi->data != key)
+        while (temp1 != NULL && temp1->data != key)
         {
-            admi2 = admi;
-            admi = admi->next;        
+            temp2 = temp1;
+            temp1 = temp1->next;        
         }
 
         //If key was not present in the linked list
-        if (admi == NULL)
+        if (temp1 == NULL)
         {
             cout<<"The given Key does not exist in the Linked List"<<endl;
         }
 
         //Unlink the node from Linked List
-        admi2->next = admi->next;
+        temp2->next = temp1->next;
 
 
         //Free memory
-        delete admi;
+        delete temp1;
 
 
         

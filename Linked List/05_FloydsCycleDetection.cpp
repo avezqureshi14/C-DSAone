@@ -47,7 +47,6 @@ int DetectFirstNode(Node*head)
 {
     Node*meet = Detect(head);
     Node*start = head;
-    Node*front = head;
 
     while (meet != start)
     {

@@ -18,7 +18,7 @@ bool isValidParenthesis(string expression)
         }
         else
         {
-            // for closing bracket 
+            // for closing bracket
             if (!s.empty())
             {
                 char top = s.top();
@@ -38,15 +38,15 @@ bool isValidParenthesis(string expression)
                 return false;
             }
         }
-        }
-        if (s.empty())
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+    }
+    if (s.empty())
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 int main()
