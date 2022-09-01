@@ -19,10 +19,10 @@ int removeDuplicates(int arr[], int n ){
             arr[i] = arr[j];
         }
 
-        return i + 1;
         
     }
     
+        return i + 1;
     
     
 }   
@@ -31,5 +31,6 @@ int main()
 {
     int arr[] = {1,1,1,2,2,2,3,3,3,3};
     int n = sizeof(arr)/sizeof(arr[0]);
+    cout<<removeDuplicates(arr,n);
     return 0;
 }

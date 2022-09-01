@@ -1,5 +1,6 @@
 saecomp11
 Inorder Traversal Print the BST in a Sorted Order
+If something is passed with reference then there iis no need to return
 1] racecar, abca check whether they are palindrome and say regarding the time complexity 🔴
 
 Funtion : isPalindrome()
