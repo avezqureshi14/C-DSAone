@@ -22,6 +22,41 @@ void rotate(vector<vector<int>> &matrix)
 }
 int main()
 {
+    vector<vector<int>>matrix;
+    for (int i = 0; i < 3; i++)
+    {
+        vector<int>temp;
+        for (int j = 0; j < 3; j++)
+        {
+            temp.push_back(1);
+            temp.push_back(1);
+            temp.push_back(1);
+            temp.push_back(1);
+            temp.push_back(1);
+            temp.push_back(0);
+            temp.push_back(1);
+            temp.push_back(1);
+            temp.push_back(1);
+            temp.push_back(1);
+            temp.push_back(0);
+            temp.push_back(0);
+            temp.push_back(0);
+            temp.push_back(0);
+            temp.push_back(0);
+            temp.push_back(1);
+        }
+        
+    }
+    cout<<"Before rotating"<<endl;
+    for(auto i : matrix){
+        for(int j : i){
+            cout<<j<<" ";
+        }
+        cout<<endl;
+    }
+    rotate(matrix);
+
+    
 
     return 0;
 }
