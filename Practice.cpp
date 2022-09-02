@@ -2,52 +2,94 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void SetZeroes(vector<vector<int>>&matrix)
+class Node
 {
- int rows = matrix.size(), col = matrix[0].size(), col0 = 1;
-    for (int i = 0; i < rows; i++)
+public:
+    int data;
+    Node *left;
+    Node *right;
+
+    Node(int val)
     {
-        //agar pehli column meh ek bhi element zero hai toh poora column 0 karne ka iske liye col0 = 0 karo
-        if (matrix[i][0] == 0)
-        {
-            col0 = 0;
-        }
-        
-        //Dummy Matrix Creation
-        //Agar konse bhi address par apne ko 0 milta toh fir apun uss row ke 0th column aur uss column ki 0th rows ko equal to karne ka 
-        for (int j = 0; j < col; j++)
-        {
-            if (matrix[i][j] == 0)
-            {
-                matrix[i][0] = matrix[0][j] = 0;
-            }
-            
-        }
-        
+        this->data = val;
+        this->left = NULL;
+        this->right = NULL;
+    }
+};
+
+Node *CreateBinaryTree(Node *root)
+{
+    cout << "Enter data " << endl;
+    int data;
+    cin >> data;
+    root = new Node(data);
+    if (root->data == -1)
+    {
+        return NULL;
     }
 
-    for (int i = rows-1; i >=0 ; i--)
-    {
-        for (int j = col - 1; j >= 1; j++)
-        {
-            if (matrix[i][0] == 0 || matrix[0][i] == 0)
-            {
-                matrix[i][j] = 0;
-            }
-            //agar col0 = 0 hua toh pehle column ko bhi zero karo (col0 = 0, pehle column meh ek bhi zero raha toh hota)
-            if (col0 == 0)
-            {
-                matrix[i][0] = 0;
-            }
-            
-        }
-        
-    }
-    
-        
+    cout << "Enter the data for inserting in left of " << data << endl;
+    root->left = CreateBinaryTree(root->left);
+
+    cout << "Enter the data for inserting in right of " << data << endl;
+    root->right = CreateBinaryTree(root->right);
+
+    return root;
 }
+
+// Time Complexity O(N)
+vector<double> LevelOrderTraversal(Node *root)
+{
+    vector<double> ans;
+    if (root == NULL)
+    {
+        return ans;
+    }
+
+    queue<Node *> q;
+    vector<int> store;
+    // Push all the elements into the Queue
+    q.push(root);
+
+    // For each loop there will be a new level
+    while (!q.empty())
+    {
+        int sum = 0;
+        double size = q.size();
+
+        for (int i = 0; i < size; i++)
+        {
+            Node *curr = q.front();
+            q.pop();
+            sum = sum + curr->data;
+            if (curr->left) // agar temp ka left hai toh bache hue hamare tree ke elements ko queue meh push karo
+            {
+                q.push(curr->left);
+            }
+
+            if (curr->right) // agar temp ka right hai toh bache hue hamare tree ke elements ko queue meh push karo
+            {
+                q.push(curr->right);
+            }
+        }
+
+        double avg = sum / size;
+        ans.push_back(avg);
+    }
+
+    return ans;
+}
+
 int main()
 {
-    
+    Node *root = NULL;
+    root = CreateBinaryTree(root);
+    for (double i : LevelOrderTraversal(root))
+    {
+        cout << i << " ";
+    }
+
     return 0;
 }
+
+// 1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1

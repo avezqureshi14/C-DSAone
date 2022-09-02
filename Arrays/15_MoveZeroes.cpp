@@ -4,11 +4,11 @@ using namespace std;
 //Remember we don't have to change the order of the non zero element , i.e we cannot sort the array
 void MoveZeroes(vector<int>&nums){
     int nonZero = 0;
-    for (int j = 0; j < nums.size(); j++)
+    for (int i = 0; i < nums.size(); i++)
     {
-        if (nums[j] != 0)
+        if (nums[i] != 0)
         {
-            swap(nums[j] , nums[nonZero]);
+            swap(nums[i] , nums[nonZero]);
             nonZero++;
         }
         

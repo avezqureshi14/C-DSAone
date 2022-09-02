@@ -43,6 +43,8 @@ Node *buildTree(Node *root)
 // Time Complexity = O(n)
 // Space Complexity = O(logn)
 // Worst Space Complexity = O(height) or O(n) //research a bit more on space complexity for this question
+
+
 int ans = 0;
 
 void PreOrder(Node *root, int maxi)
@@ -61,7 +63,7 @@ void PreOrder(Node *root, int maxi)
     PreOrder(root->right, maxi);
 }
 
-int goodNodes(Node *root)
+int CountGoodNodes(Node *root)
 {
     int maxi = INT_MIN;
     PreOrder(root, maxi);
@@ -74,7 +76,7 @@ int main()
 
     root = buildTree(root);
 
-    int res = goodNodes(root);
+    int res = CountGoodNodes(root);
     cout << "The number of good nodes in the given Binary Tree are " << res << endl;
 
     return 0;
