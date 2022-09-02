@@ -22,11 +22,9 @@ vector<int>TwoSum(vector<int>nums,int target){
 int main()
 {
     vector<int> nums;
+    nums.push_back(2);
     nums.push_back(3);
     nums.push_back(4);
-    nums.push_back(4);
-    nums.push_back(4);
-    nums.push_back(2);
 
     vector<int>res = TwoSum(nums,6);
     for(auto i : res){

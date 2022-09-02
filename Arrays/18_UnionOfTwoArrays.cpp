@@ -2,24 +2,23 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> InterSection(vector<int>nums1,vector<int>nums2){
+vector<int>Union(vector<int>nums1,vector<int>nums2){
+    unordered_set<int>hashset;
     vector<int>ans;
-    unordered_map<int,int>map;
-    for (int i = 0; i < nums1.size(); i++)
-    {
-        map[nums1[i]] = i;
+
+    for( auto i : nums1){
+        hashset.insert(i);
+    }
+    for( auto i : nums2){
+        hashset.insert(i);
     }
 
-    for (int i = 0; i < nums2.size(); i++)
-    {
-        auto itr = map.find(nums2[i]);
-        if(map.end() != itr )
+    for(auto i : hashset){
+        ans.push_back(i);
     }
-    
-    
-    
+
     return ans;
-    
+
 }
 
 int main()
@@ -34,9 +33,10 @@ int main()
     nums2.push_back(2);
     nums2.push_back(2);
 
-    for(int i : InterSection(nums1,nums2))
-    {
+    for(auto i : Union(nums1,nums2)){
         cout<<i<<" ";
     }
+
+
     return 0;
 }
