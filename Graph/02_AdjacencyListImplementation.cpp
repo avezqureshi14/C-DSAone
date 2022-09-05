@@ -4,25 +4,25 @@ using namespace std;
 class Graph
 {
 public:
-    unordered_map<int, list<int>> adj;
+    unordered_map<int, list<int>> adjList;
 
-    void addEdge(int u, int v, bool direction)
+    void prepareAdjList(int u, int v, bool direction)
     {
         // direction = 0 -> undirected graph
         // direction = 1 -> directed graph
 
-        // create an edge from u to v
-        adj[u].push_back(v);
+        // create an edge from u to v (linking)
+        adjList[u].push_back(v);
 
         if (direction == 0)
         {
-            adj[v].push_back(u);
+            adjList[v].push_back(u);
         }
     }
 
     void printAdjList()
     {
-        for (auto i : adj)
+        for (auto i : adjList)
         {
             cout << i.first << "-> ";
             for (auto j : i.second)
@@ -40,7 +40,7 @@ int main()
     cin>>n;
 
     int m;
-    cout<<"Enter thr number of edges "<<endl;
+    cout<<"Enter the number of edges "<<endl;
     cin>>m;
     Graph g;
     for (int i = 0; i < m; i++)
@@ -48,7 +48,7 @@ int main()
         int u,v; 
         cin>>u>>v;
         
-        g.addEdge(u,v,0);
+        g.prepareAdjList(u,v,0);
     }
     
     g.printAdjList();

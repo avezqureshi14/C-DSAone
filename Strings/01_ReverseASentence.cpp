@@ -27,7 +27,7 @@ void ReverseSentence(string s)
 
 int main()
 {
-    string s = "Avez is a Good Boy";
+    string s = "I like this problem very much";
 
     ReverseSentence(s);
     

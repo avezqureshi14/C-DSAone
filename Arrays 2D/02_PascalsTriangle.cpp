@@ -15,8 +15,8 @@ vector<vector<int>> Generate(int numRows)
         {
             r[i][j] = r[i - 1][j - 1] + r[i - 1][j];
         }
-        return r;
     }
+        return r;
 }
 
 int main()
