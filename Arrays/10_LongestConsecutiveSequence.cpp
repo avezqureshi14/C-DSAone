@@ -1,34 +1,57 @@
 #include <iostream>
+#include <algorithm>
 #include <bits/stdc++.h>
+
+//Lines kitne elements hai 
+//Yeh dund ne ke liye sabse pehle saare elements ko hashset meh dalo , 
+//aur fir vector ko trace karo aur dekho ki kya curr(vector element) - 1 wala element hashset meh hai kya agar nahi hai toh 
+//ek curr_streak variable banao starting from 1 aur ek variable banao curr_seq intialized from the curr(vector element) starts doing increment in curr_seq wala variable and curr_streak variable , keep on check that curr_seq variable is actually present in hashset , if it is present than keep on increasing, if not than stops 
 using namespace std;
-int LongestStreak(vector<int> nums)
+
+int LongestSequence(vector<int>&nums)
 {
     set<int> hashset;
     for (int i : nums)
     {
-        hashset.insert(nums[i]);
+        hashset.insert(i);
     }
+
+    int longestStreak = 0;
 
     for (int i : nums)
     {
-
-        int longestStreak = 0;
-        while (!hashset.count(i - 1))
+        if (!hashset.count(i - 1)) // i is not the index it is number itself from the vector
         {
-            int curr = i;
-            int curr_seq = 1;
-            while (hashset.count(curr + 1))
+            int curr_num = i;
+            int curr_seq_len = 1;
+            while (hashset.count(curr_num + 1))
             {
-                curr++;
-                curr_seq++;
+                curr_num++;
+                curr_seq_len++;
             }
 
-            longestStreak = max(longestStreak, curr_seq);
+            longestStreak = max(longestStreak, curr_seq_len);
         }
     }
+    return longestStreak;
 }
+
 int main()
 {
 
+    vector<int> nums;
+    nums.push_back(102);
+    nums.push_back(4);
+    nums.push_back(100);
+    nums.push_back(1);
+    nums.push_back(101);
+    nums.push_back(3);
+    nums.push_back(2);
+
+    cout << "The Longest Sequence is of Length " << LongestSequence(nums);
+
     return 0;
 }
+
+//Time Complexity is O(3n)
+//Space Complexity is O(n)

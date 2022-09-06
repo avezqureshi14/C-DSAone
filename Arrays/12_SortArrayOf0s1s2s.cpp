@@ -12,15 +12,16 @@ void sortColors(vector<int> &nums)
         switch (nums[mid])
         {
         case 0:
-            swap(nums[low++], nums[mid ++]);
+            swap(nums[low++], nums[mid ++]); //low and mid
             break;
         case 1:
-            mid++;
+            mid++; //mid
             break;
         case 2:
-            swap(nums[mid], nums[high--]);
+            swap(nums[mid], nums[high--]); //high
             break;
         }
+        // l-m-m-h 
     }
 }
 

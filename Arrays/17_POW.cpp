@@ -10,7 +10,7 @@ double myPow(double x, int n)
     }
     while (temp != 0)
     {
-        if (temp % 2)
+        if (temp % 2 != 0)
         {
             ans = ans * x;
             temp = temp - 1;

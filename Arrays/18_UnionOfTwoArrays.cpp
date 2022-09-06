@@ -26,8 +26,8 @@ int main()
     vector<int>nums1;
     nums1.push_back(1);
     nums1.push_back(2);
-    nums1.push_back(2);
-    nums1.push_back(1);
+    nums1.push_back(4);
+    nums1.push_back(7);
     
     vector<int>nums2;
     nums2.push_back(2);
