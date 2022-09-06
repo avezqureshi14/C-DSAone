@@ -2,6 +2,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+//just go on checking that target - curr element is present inside our map, if it is not present than just add it 
+
 vector<int>TwoSum(vector<int>nums,int target){
     unordered_map<int,int>map;
     vector<int>ans;

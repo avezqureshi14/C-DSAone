@@ -1,7 +1,9 @@
 #include <iostream>
 #include <bits/stdc++.h>
 using namespace std;
+//Sorting is needed in this method , or else we cannot be sure that element on the right are the greatest or element on the  right are smallest 
 vector<int> TwoSumP2(vector<int>nums,int target){
+    // nlogn + n  or n
     int left = 0;
     int right = nums.size() - 1;
     vector<int>ans;
