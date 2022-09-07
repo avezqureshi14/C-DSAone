@@ -57,7 +57,9 @@ vector<int>TopView(Node*root){
         int vd = temp.second;
 
         //if one value is present for a VD then do nothing 
-        if (topNode.find(vd) == topNode.end()) //dekhne ka ki jo entry apun abhi kare , kahi woh map pehle se present to nahi agar nahi hai th bhai kardo entry
+
+        //dekhne ka ki jo entry apun abhi kare , kahi woh map pehle se present to nahi agar nahi hai th bhai kardo entry. Matlab ki samjo zero wali ek entry apun map meh insert kare so hai toh wapas se woh nahi jana (niche jo overlap karte)
+        if (topNode.find(vd) == topNode.end()) 
         {
             topNode[vd] = frontNode->data;
         }

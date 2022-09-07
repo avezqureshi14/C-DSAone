@@ -2,6 +2,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+//In Pruning Binary Tree we are given binary binary Tree i.e the nodes values is also binary i.e 0 and 1
+
 class Node
 {
 public:

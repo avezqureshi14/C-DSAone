@@ -27,6 +27,10 @@ int main()
     vector<int>nums;
     nums.push_back(6);
     nums.push_back(6);
+    nums.push_back(6);
+    nums.push_back(2);
+    nums.push_back(2);
+    nums.push_back(2);
     nums.push_back(5);
     int res = MajorityI(nums);
     cout<<"Majority Element is "<<res<<endl;

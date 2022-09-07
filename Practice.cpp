@@ -1,41 +1,95 @@
 #include <iostream>
 #include <bits/stdc++.h>
 using namespace std;
-vector<int> Union(vector<int> nums1, vector<int> nums2)
+
+class Node
 {
-    unordered_set<int> hashset;
-    vector<int> ans;
-    for (auto i : nums1)
+public:
+    int data;
+    Node *left;
+    Node *right;
+
+    Node(int val)
     {
-        hashset.insert(i);
+        this->data = val;
+        this->left = NULL;
+        this->right = NULL;
     }
-    for (auto i : nums2)
+};
+
+Node *CreateBinaryTree(Node *root)
+{
+    cout << "Enter data " << endl;
+    int data;
+    cin >> data;
+    root = new Node(data);
+    if (root->data == -1)
     {
-        hashset.insert(i);
+        return NULL;
     }
 
-    for (auto i : hashset)
+    cout << "Enter the data for inserting in left of " << data << endl;
+    root->left = CreateBinaryTree(root->left);
+
+    cout << "Enter the data for inserting in right of " << data << endl;
+    root->right = CreateBinaryTree(root->right);
+
+    return root;
+}
+
+// Time Complexity O()
+vector<int> TopView(Node *root)
+{
+    vector<int> ans;
+    if (root == NULL)
     {
-        ans.push_back(i);
+        return ans;
+    }
+    map<int, int> topNode;
+    queue<pair<Node *, int>> q;
+    q.push(make_pair(root, 0));
+
+    while (!q.empty())
+    {
+        pair<Node *, int> temp;
+        temp = q.front();
+        q.pop(); //remember this we do mistake everytime in this line 
+        Node *frontNode = temp.first;
+        int hd = temp.second;
+
+        if (topNode.find(hd) == topNode.end())
+        {
+            topNode[hd] = frontNode->data;  //remember this we do mistake everytime in this line 
+        }
+
+        if (frontNode->left)
+        {
+            q.push(make_pair(frontNode->left, hd - 1)); //remember this we have to pass frontNode->left inside queue and not temp
+        }
+        if (frontNode->right)
+        {
+            q.push(make_pair(frontNode->right, hd + 1)); //remember this we have to pass frontNode->right inside queue and not temp
+        }
+    }
+    for(auto i : topNode){
+        ans.push_back(i.second);
     }
 
     return ans;
 }
+
 int main()
 {
-    vector<int> nums1;
-    nums1.push_back(1);
-    nums1.push_back(2);
-    nums1.push_back(2);
-    nums1.push_back(1);
-
-    vector<int> nums2;
-    nums2.push_back(2);
-    nums2.push_back(2);
-
-    for (auto i : Union(nums1, nums2))
+    Node *root = NULL;
+    root = CreateBinaryTree(root);
+    vector<int> res = TopView(root);
+    for (auto i : res)
     {
         cout << i << " ";
     }
+
     return 0;
 }
+
+// 1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
+// 8 5 4 -1 -1 7 6 -1 -1 -1 12 10 -1 -1 14 13 -1 -1 -1

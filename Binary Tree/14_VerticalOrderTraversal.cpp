@@ -56,19 +56,19 @@ vector<int> verticalTraversal(Node *root)
         pair<Node *, pair<int, int>> temp = q.front();
         q.pop(); 
         Node *frontNode = temp.first; //using queue
-        int vd = temp.second.first; //using queue
+        int hd = temp.second.first; //using queue
         int lvl = temp.second.second; //using queue
 
-        nodes[vd][lvl].push_back(frontNode->data); //using map
+        nodes[hd][lvl].push_back(frontNode->data); //using map
 
         if (frontNode->left)
         {
-            q.push(make_pair(frontNode->left, make_pair(vd - 1, lvl + 1)));
+            q.push(make_pair(frontNode->left, make_pair(hd - 1, lvl + 1)));
         }
 
         if (frontNode->right)
         {
-            q.push(make_pair(frontNode->right, make_pair(vd + 1, lvl + 1)));
+            q.push(make_pair(frontNode->right, make_pair(hd + 1, lvl + 1)));
         }
     }
 
