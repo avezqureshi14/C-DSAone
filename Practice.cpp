@@ -1,95 +1,63 @@
 #include <iostream>
-#include <bits/stdc++.h>
 using namespace std;
-
-class Node
+class ListNode
 {
 public:
+    ListNode *next;
     int data;
-    Node *left;
-    Node *right;
-
-    Node(int val)
-    {
-        this->data = val;
-        this->left = NULL;
-        this->right = NULL;
-    }
 };
 
-Node *CreateBinaryTree(Node *root)
+ListNode *deleteDuplicates(ListNode *head)
 {
-    cout << "Enter data " << endl;
-    int data;
-    cin >> data;
-    root = new Node(data);
-    if (root->data == -1)
+    ListNode *curr = head;
+   
+
+    while (fast != NULL && fast->next != NULL)
     {
-        return NULL;
+        
+        if (slow->data == fast->data)
+        {
+            slow->next = fast->next;
+        }
+        slow = slow->next;
+        fast = fast->next;
     }
+    
 
-    cout << "Enter the data for inserting in left of " << data << endl;
-    root->left = CreateBinaryTree(root->left);
-
-    cout << "Enter the data for inserting in right of " << data << endl;
-    root->right = CreateBinaryTree(root->right);
-
-    return root;
+    return head;
 }
 
-// Time Complexity O()
-vector<int> TopView(Node *root)
-{
-    vector<int> ans;
-    if (root == NULL)
+void print(ListNode*n){
+    while (n!=NULL)
     {
-        return ans;
+        cout<<n->data<<" ";
+        n = n->next;
     }
-    map<int, int> topNode;
-    queue<pair<Node *, int>> q;
-    q.push(make_pair(root, 0));
-
-    while (!q.empty())
-    {
-        pair<Node *, int> temp;
-        temp = q.front();
-        q.pop(); //remember this we do mistake everytime in this line 
-        Node *frontNode = temp.first;
-        int hd = temp.second;
-
-        if (topNode.find(hd) == topNode.end())
-        {
-            topNode[hd] = frontNode->data;  //remember this we do mistake everytime in this line 
-        }
-
-        if (frontNode->left)
-        {
-            q.push(make_pair(frontNode->left, hd - 1)); //remember this we have to pass frontNode->left inside queue and not temp
-        }
-        if (frontNode->right)
-        {
-            q.push(make_pair(frontNode->right, hd + 1)); //remember this we have to pass frontNode->right inside queue and not temp
-        }
-    }
-    for(auto i : topNode){
-        ans.push_back(i.second);
-    }
-
-    return ans;
+    
 }
+
 
 int main()
 {
-    Node *root = NULL;
-    root = CreateBinaryTree(root);
-    vector<int> res = TopView(root);
-    for (auto i : res)
-    {
-        cout << i << " ";
-    }
+    ListNode *head = new ListNode();
+    ListNode *second = new ListNode();
+    ListNode *third = new ListNode();
+    ListNode *fourth = new ListNode();
+    ListNode *fifth = new ListNode();
+
+    head->data = 2;
+    head->next = second;
+    second->data = 2;
+    second->next = third;
+    third->data = 12;
+    third->next = fourth;
+    fourth->data = 3;
+    fourth->next = fifth;
+    fifth->data = 3;
+    fifth->next = NULL;
+
+    print(deleteDuplicates(head));
+    
 
     return 0;
 }
-
-// 1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
-// 8 5 4 -1 -1 7 6 -1 -1 -1 12 10 -1 -1 14 13 -1 -1 -1
