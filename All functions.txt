@@ -2,6 +2,12 @@ saecomp11
 Inorder Traversal Print the BST in a Sorted Order
 If something is passed with reference then there iis no need to return
 If it is passed by reference then we are keeping track of all its value
+If passed by reference then it doesn't uses aby extra space and also a bit optimizes our solution
+
+Why this implementation is used when we have Queue as Data Structure , what is the use case for this implementation?
+but on a serious note, at the low-level every thing is implement using stacks(from data structures to loops,  loops are done using recursion which is made possible using stacks)
+
+
 1] racecar, abca check whether they are palindrome and say regarding the time complexity 🔴
 
 Funtion : isPalindrome()

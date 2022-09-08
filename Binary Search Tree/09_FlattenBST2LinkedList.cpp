@@ -68,7 +68,7 @@ Node*Flatten(Node*root){
     Node*newRoot = new Node(inorderVal[0]);
 
     Node*curr = newRoot;
-
+ 
     for (int i = 1; i < n; i++)
     {
         Node*temp = new Node(inorderVal[i]);

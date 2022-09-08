@@ -51,7 +51,7 @@ bool isValidParenthesis(string expression)
 
 int main()
 {
-    string s = "{({}}";
+    string s = "()";
     bool res = isValidParenthesis(s);
     if (res == true)
     {
