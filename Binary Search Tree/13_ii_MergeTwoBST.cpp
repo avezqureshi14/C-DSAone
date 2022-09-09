@@ -213,7 +213,7 @@ int main()
     Node *root1 = NULL;
     root1 = buildTree(root1);
     Node *root2 = NULL;
-    root2 = buildTree(root2);
+    root2 = buildTree(root2); 
 
     Node *root3;
     root3 = MergeBST(root1,root2);
