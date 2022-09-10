@@ -18,38 +18,41 @@ public:
 // Time Complexity is O(N)
 // Space Complexity is O(N)
 
+void Inorder(Node *root, vector<int> &inorderVal)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+    Inorder(root->left, inorderVal);
+    inorderVal.push_back(root->data);
+    Inorder(root->right, inorderVal);
+}
 
-Node*InorderToBST(int start, int end, vector<int>&inorderVal){
-    //base case
-    if(start > end){
+
+Node *InorderToBST(int start, int end, vector<int> &inorderVal)
+{
+    // base case
+    if (start > end)
+    {
         return NULL;
     }
-    int mid = start+end/2;
+    int mid = (start + end )/ 2; //this braces really very much important
 
-    Node*root = new Node(inorderVal[mid]);
-    root->left = InorderToBST(start,mid-1,inorderVal);
-    root->right = InorderToBST(mid+1,end, inorderVal);
+    Node *root = new Node(inorderVal[mid]);
+    root->left = InorderToBST(start, mid - 1, inorderVal);
+    root->right = InorderToBST(mid + 1, end, inorderVal);
 
     return root;
 }
-vector<int> Inorder(Node*root,vector<int>&inorderVector){
-    if (root == NULL)
-    {
-        return inorderVector;
-    }
-    Inorder(root->left,inorderVector);
-    inorderVector.push_back(root->data);
-    Inorder(root->right,inorderVector);
-    return inorderVector;
+
+Node *BalancedBST(Node *root)
+{
+    vector<int> inorderVal;
+    Inorder(root, inorderVal);
+
+    return InorderToBST(0, inorderVal.size() - 1, inorderVal);
 }
-
-Node*BalancedBST(Node*root){
-    vector<int>inorderVal;
-    Inorder(root,inorderVal);
-
-    return InorderToBST(0,inorderVal.size()-1, inorderVal);
-}
-
 
 Node *buildTree(Node *root)
 {
@@ -64,15 +67,13 @@ Node *buildTree(Node *root)
         return NULL;
     }
 
-    cout<<"Enter data for inserting in left "<<data<<endl;
+    cout << "Enter data for inserting in left " << data << endl;
     root->left = buildTree(root->left);
-    cout<<"Enter data for inserting in right "<<data<<endl;
+    cout << "Enter data for inserting in right " << data << endl;
     root->right = buildTree(root->right);
 
     return root;
 }
-
-
 
 void LevelOrderTraversal(Node *root)
 {
@@ -80,7 +81,7 @@ void LevelOrderTraversal(Node *root)
     // Push all the elements into the Queue
     q.push(root);
     q.push(NULL);
- 
+
     while (!q.empty())
     {
         Node *temp = q.front();
@@ -91,21 +92,21 @@ void LevelOrderTraversal(Node *root)
             // purana levelcomplete traverse ho chuka hai
             cout << endl;
             if (!q.empty())
-              {
+            {
                 // queue still has some child Nodes
                 q.push(NULL);
             }
         }
-         else
+        else
         {
-            cout<<temp->data<<" ";
+            cout << temp->data << " ";
 
-            if (temp->left) //agar temp ka left hai toh bache hue hamare tree ke elements ko queue meh push karo
+            if (temp->left) // agar temp ka left hai toh bache hue hamare tree ke elements ko queue meh push karo
             {
                 q.push(temp->left);
             }
 
-            if (temp->right) //agar temp ka right hai toh bache hue hamare tree ke elements ko queue meh push karo
+            if (temp->right) // agar temp ka right hai toh bache hue hamare tree ke elements ko queue meh push karo
             {
                 q.push(temp->right);
             }
@@ -113,25 +114,18 @@ void LevelOrderTraversal(Node *root)
     }
 }
 
-
-
-
-
 int main()
 {
     Node *root = NULL;
     root = buildTree(root);
     LevelOrderTraversal(root);
-    cout<<"Balanced BST"<<endl;
-  
+    cout << "Balanced BST" << endl;
+
     LevelOrderTraversal(BalancedBST(root));
 
-
-
-
-
     return 0;
-
 }
+
+//ask whether can every BST can be converted into balanced BST
 
 // 8 5 4 -1 -1 7 6 -1 -1 -1 12 10 -1 -1 14 13 11 -1 -1 -1 -1

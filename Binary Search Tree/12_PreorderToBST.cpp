@@ -84,10 +84,11 @@ Node*Solve(vector<int>&PreOrder, int mini, int maxi, int &i){
         return NULL;
     }
 
-    if(PreOrder[i]<mini || PreOrder[i] > maxi)
+    if((PreOrder[i] < mini) || (PreOrder[i] > maxi)){
         return NULL;
+    }
 
-    Node*root = new Node(PreOrder[i++]);
+     Node*root = new Node(PreOrder[i++]);
     root->left = Solve(PreOrder,mini,root->data,i);
     root->right = Solve(PreOrder,root->data,maxi,i);
     return root;
@@ -110,14 +111,15 @@ int main()
     // cout << "Printing Level Order Transversal " << endl;
     // 10, 5, 1, 7, 40, 50 
     vector<int>PreOrder ;
+    PreOrder.push_back(20);
     PreOrder.push_back(10);
+    PreOrder.push_back(5);
     PreOrder.push_back(15);
-    PreOrder.push_back(1);
-    PreOrder.push_back(7);
-    PreOrder.push_back(40);
-    PreOrder.push_back(50);
-    Node *root = PreOrderToBST(PreOrder);
-    LevelOrderTraversal(root);
+    PreOrder.push_back(13);
+    PreOrder.push_back(35);
+    PreOrder.push_back(30);
+    PreOrder.push_back(42);
+    LevelOrderTraversal(PreOrderToBST(PreOrder));
     return 0;
 }
 

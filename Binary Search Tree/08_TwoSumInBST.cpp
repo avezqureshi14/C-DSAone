@@ -50,7 +50,7 @@ void Inorder(Node *root, vector<int> &inorderVector)
     inorderVector.push_back(root->data);
     Inorder(root->right, inorderVector);
 }
-
+//check how to return those two elements 
 bool TwoSumInBST(Node *root, int target)
 {
     vector<int> InorderVal;
@@ -169,7 +169,7 @@ int main()
     Node *root = NULL;
 
     root = buildTree(root);
-    bool res = findTarget(root,9);
+    bool res = TwoSumInBST(root,99);
     if (res == true)
     {
         cout << "Yeah!";

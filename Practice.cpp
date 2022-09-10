@@ -1,63 +1,186 @@
 #include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
-class ListNode
+class Node
 {
 public:
-    ListNode *next;
     int data;
+    Node *left;
+    Node *right;
+    Node(int val)
+    {
+        this->data = val;
+        this->left = NULL;
+        this->right = NULL;
+    }
 };
 
-ListNode *deleteDuplicates(ListNode *head)
+void LevelOrderTraversal(Node *root)
 {
-    ListNode *curr = head;
-   
+    queue<Node *> q;
+    // Push all the elements into the Queue
+    q.push(root);
+    q.push(NULL);
 
-    while (fast != NULL && fast->next != NULL)
+    while (!q.empty())
     {
-        
-        if (slow->data == fast->data)
+        Node *temp = q.front();
+        q.pop();
+
+        if (temp == NULL)
         {
-            slow->next = fast->next;
+            // purana levelcomplete traverse ho chuka hai
+            cout << endl;
+            if (!q.empty())
+            {
+                // queue still has some child Nodes
+                q.push(NULL);
+            }
         }
-        slow = slow->next;
-        fast = fast->next;
-    }
-    
+        else
+        {
+            cout << temp->data << " ";
 
-    return head;
+            if (temp->left) // agar temp ka left hai toh bache hue hamare tree ke elements ko queue meh push karo
+            {
+                q.push(temp->left);
+            }
+
+            if (temp->right) // agar temp ka right hai toh bache hue hamare tree ke elements ko queue meh push karo
+            {
+                q.push(temp->right);
+            }
+        }
+    }
 }
 
-void print(ListNode*n){
-    while (n!=NULL)
+
+Node *buildTree(Node *root)
+{
+    int data;
+    cout << "Enter the data " << endl;
+    cin >> data;
+
+    root = new Node(data);
+    if (data == -1)
     {
-        cout<<n->data<<" ";
-        n = n->next;
+        return NULL;
     }
-    
+
+    // For left
+    cout << "Enter the data for the left of " << data << endl;
+    root->left = buildTree(root->left);
+    cout << "Enter the data for the right of " << data << endl;
+    root->right = buildTree(root->right);
+
+    return root;
 }
 
+// Time Complexity is O(N)
+// Space Complexity is O(N)
+
+void Inorder(Node *root, vector<int> &ans)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+    Inorder(root->left, ans);
+    ans.push_back(root->data);
+    Inorder(root->right, ans);
+}
+
+bool TWoSum(Node *root, int target)
+{
+    vector<int> ans;
+    Inorder(root, ans);
+    int i = 0, j = ans.size() - 1;
+    while (i < j)
+    {
+        int sum = ans[i] + ans[j];
+        if (sum == target)
+        {
+            return true;
+        }
+        else if (sum > target)
+        {
+            j--;
+        }
+        else
+        {
+            i++;
+        }
+    }
+
+    return false;
+}
+
+Node *Flatten(Node *root)
+{
+    vector<int> ans;
+    Inorder(root, ans);
+    Node *new_node = new Node(ans[0]);
+    Node *curr = new_node;
+    int n = ans.size();
+    for (int i = 1; i < n; i++)
+    {
+        Node *temp = new Node(ans[i]);
+        curr->left = NULL;
+        curr->right = temp;
+        curr = temp;
+    }
+
+    curr->left = NULL;
+    curr->right = NULL;
+    return new_node;
+}
+
+Node *CreateABalancedBST(Node *root)
+{
+    vector<int> ans;
+    Inorder(root, ans);
+    int n = ans.size() - 1;
+    int start, end, mid;
+    start = 0, end = n - 1;
+
+    InorderToBST(root, ans, start, end);
+}
+
+Node *InorderToBST(Node *root, vector<int> ans, int start, int end)
+{
+    int mid = 0;
+    while (start < end)
+    {
+        mid = (start + end) / 2;
+    }
+
+    Node *root = new Node(ans[mid]);
+    InorderToBST(root->left,ans,0,mid-1);
+    InorderToBST(root->right,ans,mid+1,end);
+
+    return root;
+}
+
+void print(Node *n)
+{
+    while (n != NULL)
+    {
+        cout << n->data << " -> ";
+        n = n->right;
+    }
+}
 
 int main()
 {
-    ListNode *head = new ListNode();
-    ListNode *second = new ListNode();
-    ListNode *third = new ListNode();
-    ListNode *fourth = new ListNode();
-    ListNode *fifth = new ListNode();
+    Node *root = NULL;
 
-    head->data = 2;
-    head->next = second;
-    second->data = 2;
-    second->next = third;
-    third->data = 12;
-    third->next = fourth;
-    fourth->data = 3;
-    fourth->next = fifth;
-    fifth->data = 3;
-    fifth->next = NULL;
-
-    print(deleteDuplicates(head));
-    
+    root = buildTree(root);
+    LevelOrderTraversal(root);
+    cout<<endl;
+    cout<<"Balanced BST"<<endl;
+    LevelOrderTraversal(CreateABalancedBST(root));
 
     return 0;
 }
+
+// 8 5 4 -1 -1 7 6 -1 -1 -1 12 10 -1 -1 14 13 11 -1 -1 -1 -1

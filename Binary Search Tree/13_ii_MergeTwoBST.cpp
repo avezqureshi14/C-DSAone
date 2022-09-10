@@ -80,12 +80,12 @@ void LevelOrderTraversal(Node *root)
     }
 }
 
-void BSTtoSortedDLL(Node *root, Node *head)
+void BSTtoSortedDLL(Node *root, Node *&head)
 {
     // base case
     if (root == NULL)
     {
-        return ;
+        return;
     }
 
     BSTtoSortedDLL(root->right, head);
@@ -149,7 +149,7 @@ Node *mergedLinkedList(Node *head1, Node *head2)
         head1 = head1->right;
     }
     while (head2 != NULL)
-    { 
+    {
         tail->right = head2;
         head2->left = tail;
         tail = head2;
@@ -178,7 +178,7 @@ Node *SortedLLToBST(Node *&head, int n)
         return NULL;
     }
 
-    Node *left = SortedLLToBST(head, n / 2);
+    Node *left = SortedLLToBST(head, (n / 2));
     Node *root = head;
 
     root->left = left;
@@ -213,11 +213,8 @@ int main()
     Node *root1 = NULL;
     root1 = buildTree(root1);
     Node *root2 = NULL;
-    root2 = buildTree(root2); 
-
-    Node *root3;
-    root3 = MergeBST(root1,root2);
-    LevelOrderTraversal(root3);
+    root2 = buildTree(root2);
+    LevelOrderTraversal(MergeBST(root1, root2));
     return 0;
 }
 

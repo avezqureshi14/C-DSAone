@@ -34,7 +34,8 @@
         "limits": "cpp",
         "semaphore": "cpp",
         "complex": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "new": "cpp"
     },
     "C_Cpp.errorSquiggles": "EnabledIfIncludesResolve"
 }

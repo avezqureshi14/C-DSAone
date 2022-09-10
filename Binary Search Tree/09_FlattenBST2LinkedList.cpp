@@ -15,11 +15,6 @@ public:
     }
 };
 
-class ListNode{
-    public:
-    ListNode*next;
-    int Listdata;
-};
 
 Node *buildTree(Node *root)
 {
@@ -48,19 +43,19 @@ Node *buildTree(Node *root)
 // Time Complexity is O(N)
 // Space Complexity is O(N)
 
-void Inorder(Node*root,vector<int>inorderVector){
+void Inorder(Node*root,vector<int>&inorderVal){
     if (root == NULL)
     {
         return;
     }
-    Inorder(root->left,inorderVector);
-    inorderVector.push_back(root->data);
-    Inorder(root->right,inorderVector);
+    Inorder(root->left,inorderVal);
+    inorderVal.push_back(root->data);
+    Inorder(root->right,inorderVal);
     
 }
 
 
-Node*Flatten(Node*root){
+Node* Flatten(Node*root){
     vector<int>inorderVal;
     Inorder(root,inorderVal);
     int n = inorderVal.size();
@@ -102,7 +97,6 @@ int main()
     root = buildTree(root);
     
     print(Flatten(root));
-
 
 
 

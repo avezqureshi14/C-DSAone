@@ -37,15 +37,14 @@ Node *CreateBinaryTree(Node *root)
     return root;
 }
 
-
-//Time Complexity O(N)
+// Time Complexity O(N)
 void LevelOrderTraversal(Node *root)
 {
     queue<Node *> q;
     // Push all the elements into the Queue
     q.push(root);
     q.push(NULL);
- 
+
     while (!q.empty())
     {
         Node *temp = q.front();
@@ -56,21 +55,21 @@ void LevelOrderTraversal(Node *root)
             // purana levelcomplete traverse ho chuka hai
             cout << endl;
             if (!q.empty())
-              {
+            {
                 // queue still has some child Nodes
                 q.push(NULL);
             }
         }
-         else
+        else
         {
-            cout<<temp->data<<" ";
+            cout << temp->data << " ";
 
-            if (temp->left) //agar temp ka left hai toh bache hue hamare tree ke elements ko queue meh push karo
+            if (temp->left) // agar temp ka left hai toh bache hue hamare tree ke elements ko queue meh push karo
             {
                 q.push(temp->left);
             }
 
-            if (temp->right) //agar temp ka right hai toh bache hue hamare tree ke elements ko queue meh push karo
+            if (temp->right) // agar temp ka right hai toh bache hue hamare tree ke elements ko queue meh push karo
             {
                 q.push(temp->right);
             }
@@ -78,6 +77,31 @@ void LevelOrderTraversal(Node *root)
     }
 }
 
+vector<vector<int>> levelOrder(Node *root)
+{
+    if (!root)
+        return {};
+    vector<vector<int>> res;
+    queue<Node *> q;
+    q.push(root);
+    while (q.size())
+    {
+        int n = q.size();
+        vector<int> v;
+        while (n--)
+        {
+            Node *t = q.front();
+            q.pop();
+            v.push_back(t->data);
+            if (t->left)
+                q.push(t->left);
+            if (t->right)
+                q.push(t->right);
+        }
+        res.push_back(v);
+    }
+    return res;
+}
 
 int main()
 {
