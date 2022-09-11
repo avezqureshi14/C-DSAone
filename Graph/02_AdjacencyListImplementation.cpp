@@ -10,7 +10,7 @@ public:
     {
         // direction = 0 -> undirected graph
         // direction = 1 -> directed graph
-
+    
         // create an edge from u to v (linking)
         adjList[u].push_back(v);
 

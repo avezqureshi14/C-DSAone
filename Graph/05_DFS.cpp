@@ -2,13 +2,14 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void dfs(int node, unordered_map<int, bool> &visited, unordered_map<int, list<int>> adjList, vector<int> component)
+void dfs(int node, unordered_map<int, bool> &visited, unordered_map<int, set<int>> adjList, vector<int> &component)
 {
     component.push_back(node);
     visited[node] = true;
 
     // har connected node ke liye recursive call
 
+    //Jab aaju baju wale ko bulate toh sirf ek ko lekhar aage badne ka 
     for (auto i : adjList[node])
     {
         if (!visited[i])
@@ -18,17 +19,17 @@ void dfs(int node, unordered_map<int, bool> &visited, unordered_map<int, list<in
     }
 }
 
-vector<vector<int>> depthFirstSearch(int vertex, int e, vector<vector<int>> &edges)
+vector<vector<int>> depthFirstSearch(int vertex, vector<pair<int, int>> edges) //previously they gave us the pair of edges now they gave vector of edges
 {
     // prepare adjList
-    unordered_map<int, list<int>> adjList;
+    unordered_map<int, set<int>> adjList;
     for (int i = 0; i < edges.size(); i++)
     {
-        int u = edges[i][0];
-        int v = edges[1][1];
+        int u = edges[i].first;
+        int v = edges[i].second;
 
-        adjList[u].push_back(v);
-        adjList[v].push_back(u);
+        adjList[u].insert(v);
+        adjList[v].insert(u);
     }
 
     vector<vector<int>> ans;
@@ -43,9 +44,28 @@ vector<vector<int>> depthFirstSearch(int vertex, int e, vector<vector<int>> &edg
             ans.push_back(component);
         }
     }
+    return ans;
 }
 int main()
 {
+    vector<pair<int, int>> edges;
+    edges.push_back(make_pair(0, 2));
+    edges.push_back(make_pair(0, 1));
+    edges.push_back(make_pair(1, 2));
+    edges.push_back(make_pair(3, 4));
+    for (auto i : depthFirstSearch(4, edges))
+    {
+        for(auto j : i){
+            cout<<j<<" ";
+        }
+            cout<<endl;
+    }
+
+
+
+
+    
+
 
     return 0;
 }

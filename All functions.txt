@@ -3,10 +3,15 @@ Inorder Traversal Print the BST in a Sorted Order
 If something is passed with reference then there iis no need to return
 If it is passed by reference then we are keeping track of all its value
 If passed by reference then it doesn't uses aby extra space and also a bit optimizes our solution
+If we passed vector rather than passing unordered_map then also our solution gets optimized  (if TLE)
 
 Why this implementation is used when we have Queue as Data Structure , what is the use case for this implementation?
 but on a serious note, at the low-level every thing is implement using stacks(from data structures to loops,  loops are done using recursion which is made possible using stacks)
 
+We can perform Topological Sort only if Our Graph is Directed Acyclic Graph (DAG) it cannot be performed in Cyclic Graph
+If we are unable to perform a valid Topological Sort in a Directed Graph then it means Cycle is present inside that Graph
+
+Never forget to pop the value from the stack whenever you have stored it somewhere    
 
 1] racecar, abca check whether they are palindrome and say regarding the time complexity 🔴
 

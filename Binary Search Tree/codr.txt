@@ -1,5 +1,96 @@
-    while (root != NULL && root->data != val)
-    {
-        root = val < root->data ? root->left : root->right;
+class Engineer {        
+  public:          // Access specifier
+    int speed,efficiency;      // Attributes
+    Engineer(int speed, int efficiency) { // Constructor with parameters
+      this->speed = speed;
+      this->efficiency = efficiency;
     }
-    return root;
+    
+    bool operator < (Engineer const &obj) {
+        if(this->efficiency == obj.efficiency)
+            return this->speed > obj.speed;
+        else 
+           return this->efficiency > obj.efficiency;
+    }
+};
+
+
+class Solution {
+public:
+    int maxPerformance(int n, vector<int>& speed, vector<int>& efficiency, int k) {
+      vector<Engineer>teams;
+      long long ans = 0, speedSum = 0;
+        
+       for(int i=0;i<n;i++) {
+           Engineer obj(speed[i],efficiency[i]);
+           teams.push_back(obj);
+       }
+        
+      sort(teams.begin(),teams.end());
+      priority_queue<int,vector<int>,greater<int>>pq;
+        
+      for(Engineer engineer: teams) {
+          
+          while(pq.size()>=k) {
+              speedSum -= pq.top();
+              pq.pop();
+          }
+         pq.push(engineer.speed);
+         speedSum += engineer.speed;
+         ans = max (ans, 1LL * speedSum * engineer.efficiency);
+      }  
+       
+        int mod = 1e9 + 7;
+        return int(ans % mod);
+    }
+};
+
+Invert Binary tree
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        if(!root) return root;
+        
+        TreeNode* temp = root->left;
+        root->left = root->right;
+        root->right = temp;
+        
+        invertTree(root->left);
+        invertTree(root->right);
+        
+        return root;
+    }
+};
+
+Path sum 
+ void pathAns(TreeNode* root,int sum,int k,bool& ans){
+        sum += root -> val;
+        if(root -> left == NULL && root -> right == NULL){
+            if(sum == k)
+                ans = true;
+            return;
+        }
+        if(root -> left != NULL)
+            pathAns(root -> left,sum,k,ans);
+        if(root -> right != NULL)
+            pathAns(root -> right,sum,k,ans);
+    
+    }
+    bool hasPathSum(TreeNode* root, int targetSum) {
+        if(root == NULL)
+            return false;
+         bool ans = false;
+         pathAns(root,0,targetSum,ans);
+        return ans;
+    }
