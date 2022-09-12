@@ -2,41 +2,41 @@
 #include <bits/stdc++.h>
 using namespace std;
 unordered_map<int, list<int>> adjList;
-void prepareAdjList(vector<pair<int, int>> &edges)
+
+void Prepare(int vertex, vector<pair<int, int>> &edges)
 {
-    for (int i = 0; i < edges.size(); i++)
+    for (int i = 0; i < vertex; i++)
     {
         int u = edges[i].first;
         int v = edges[i].second;
         adjList[u].push_back(v);
+        adjList[v].push_back(u);
     }
 }
-void printAdjList()
-{
-    for (auto i : adjList)
-    {
-        cout << i.first << "-> ";
-        for (auto j : i.second)
-        {
-            cout << j << ", ";
-        }
-        cout << endl;
-    }
-}
-int main()
 
+queue<int> q;
+
+vector<int> BFS(int vertex, vector<pair<int, int>> &edges)
+{
+    unordered_map<int,bool>visited;
+    for(auto i : adjList){
+        if(visited[i] == 0){
+            
+        }
+    }    
+}
+
+int main()
 {
     vector<pair<int, int>> edges;
-    edges.push_back(make_pair(1, 2));
+    edges.push_back(make_pair(5, 0));
+    edges.push_back(make_pair(4, 0));
+    edges.push_back(make_pair(5, 2));
+    edges.push_back(make_pair(4, 1));
+    edges.push_back(make_pair(3, 1));
     edges.push_back(make_pair(2, 3));
-    edges.push_back(make_pair(3, 7));
-    edges.push_back(make_pair(3, 8));
-    edges.push_back(make_pair(2, 4));
-    edges.push_back(make_pair(4, 5));
-    edges.push_back(make_pair(5, 6));
-    edges.push_back(make_pair(6, 4));
-    edges.push_back(make_pair(8, 7));
-    prepareAdjList(edges);
-    printAdjList();
+    edges.push_back(make_pair(3, 3));
+    Prepare(6, edges);
+    print();
     return 0;
 }
