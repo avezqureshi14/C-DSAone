@@ -36,36 +36,53 @@ Node *buildTree(Node *root)
     return root;
 }
 
-
-
-
 // Time Complexity is O(N)
 // Space Complexity is O(1)
 
-bool isValidBST(Node*root, long minVal, long maxVal)
+bool isValidBST(Node *root, long minVal, long maxVal)
 {
     if (root == NULL)
     {
-        cout<<maxVal;
+        cout << maxVal;
         return true;
     }
 
-    if (root->data >= maxVal || root->data <= minVal )
+    if (root->data >= maxVal || root->data <= minVal)
     {
         return false;
     }
 
-    return isValidBST(root->left,minVal, root->data) &&
-           isValidBST(root->right,root->data, maxVal);
-    
-    
+    return isValidBST(root->left, minVal, root->data) &&
+           isValidBST(root->right, root->data, maxVal);
 }
 
-bool isValidBST(Node*root){
-    //concept of function Overloading 👇👇👇 means the same function name with the different amount of parameters
-    return isValidBST(root,INT_MIN,INT_MAX);
+bool isValidBST(Node *root)
+{
+    // concept of function Overloading 👇👇👇 means the same function name with the different amount of parameters
+    return isValidBST(root, INT_MIN, INT_MAX);
 }
 
+//performing Inorder Traversal
+//As inorder of BST is sorted , after than just traverse the array and check whether the previous is smaller than the current element if yes then good , if no then this is not a validate binary tree
+void helper(Node *root, vector<int> &ans)
+{
+    if (root == NULL)
+        return;
+    helper(root->left, ans);
+    ans.push_back(root->data);
+    helper(root->right, ans);
+}
+bool isValidBST(Node *root)
+{
+    vector<int> ans;
+    helper(root, ans);
+    for (int i = 0; i < ans.size() - 1; i++)
+    {
+        if (ans[i] >= ans[i + 1])
+            return false;
+    }
+    return true;
+}
 
 int main()
 {
@@ -75,17 +92,16 @@ int main()
     bool res = isValidBST(root);
     if (res == true)
     {
-        cout<<"It is a Valid BST"<<endl;
+        cout << "It is a Valid BST" << endl;
     }
-    else{
-        cout<<"It is not a Valid BST"<<endl;
+    else
+    {
+        cout << "It is not a Valid BST" << endl;
     }
-    
 
     return 0;
-
 }
 
 // 8 5 4 -1 -1 7 6 -1 -1 -1 12 10 -1 -1 14 13 11 -1 -1 -1 -1
-//8 5 4 -1 -1 7 -1 -1 12 10 -1 -1 14 -1 -1 
-//8 5 4 3 -1 -1  -1  6 -1 -1  11 10 -1 -1 13 -1 -1 
+// 8 5 4 -1 -1 7 -1 -1 12 10 -1 -1 14 -1 -1
+// 8 5 4 3 -1 -1  -1  6 -1 -1  11 10 -1 -1 13 -1 -1

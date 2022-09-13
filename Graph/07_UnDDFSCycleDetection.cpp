@@ -24,6 +24,7 @@ bool isCyclicDFS(unordered_map<int, list<int>> &adjList, unordered_map<int, bool
     {
         if (visited[i] = 0) //check if visited is false, if yes move forward in if
         {
+            //as this is a recursive call our answer will be coming from the last call 
             bool ans = isCyclicDFS(adjList, visited, i, node); //Now if our function has brought true from the last iteration then return true
             if (ans == true)
             {

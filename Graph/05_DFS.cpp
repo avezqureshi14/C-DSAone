@@ -14,7 +14,7 @@ void dfs(int node, unordered_map<int, bool> &visited, unordered_map<int, set<int
     {
         if (!visited[i])
         {
-            dfs(i, visited, adjList, component);
+            dfs(i, visited, adjList, component); //recursive call
         }
     }
 }

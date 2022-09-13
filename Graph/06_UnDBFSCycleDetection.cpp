@@ -22,6 +22,7 @@ bool isCyclic(unordered_map<int, list<int>> &adjList, unordered_map<int, bool> &
     queue<int> q;
     q.push(node);
     parent[node] = -1;
+        // pehli node ka parent -1 set karna hai 
     visited[node] = 1;
 
     while (!q.empty())
@@ -70,8 +71,8 @@ string CycleDetection(int vertex, vector<pair<int, int>> &edges)
     }
     return "No";
 }
-
 int main()
+
 {
     vector<pair<int, int>> edges;
     edges.push_back(make_pair(0, 3));

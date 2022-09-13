@@ -23,9 +23,9 @@ bool isCycleDFS(int nodes, unordered_map<int, bool> &visited, unordered_map<int,
             return true;
         }
     }
-
+    //agar samjo kisi node ka adjacent nahi mila toh woh(isCycleDFS function) sida ishar jump karega
     dfsVisited[nodes] = false;
-    return false;
+    return false; //how does function is moving above again
 }
 
 string detectCycleInDirectedGraph(int vertex, vector<pair<int, int>> &edges)
@@ -40,7 +40,7 @@ string detectCycleInDirectedGraph(int vertex, vector<pair<int, int>> &edges)
     }
 
     unordered_map<int, bool> visited;
-    unordered_map<int, bool> dfsVisited;
+    unordered_map<int, bool> dfsVisited; //speciality
 
     // call dfs for all components
     for (int i = 1; i < vertex; i++)
