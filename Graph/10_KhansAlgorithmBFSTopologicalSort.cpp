@@ -13,8 +13,8 @@ vector<int> BFSTopologicalSort(int vertex, vector<pair<int, int>> &edges)
         adjList[u].push_back(v);
     }
 
-    // find all indegree
-    vector<int> indegree(vertex);
+    // find all indegree 
+    vector<int> indegree(vertex); //jitne apne upar arrows hai utni apni indegree
     for (auto i : adjList)
     {
         for (auto j : i.second)
