@@ -150,7 +150,7 @@ int main()
     LevelOrderTraversal(root);
     cout << endl;
     cout << "After Deleting " << endl;
-    deleteNode(root, 13);
+    deleteNode(root, 12);
     LevelOrderTraversal(root);
 
     return 0;

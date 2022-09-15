@@ -39,18 +39,18 @@ Node *buildTree(Node *root)
 //Just less than the given key
 int findFast(Node *root, int key)
 {
-    int fast = -1;
+    int floor = -1;
     while (root)
     {
         if (root->data == key)
         {
-            fast = root->data;
-            return fast;
+            floor = root->data;
+            return floor;
         }
 
         if (key > root->data)
         {
-            fast = root->data;
+            floor = root->data;
             root = root->right;
         }
         else
@@ -58,7 +58,7 @@ int findFast(Node *root, int key)
             root = root->left;
         }
     }
-    return fast;
+    return floor;
 }
 
 int main()
@@ -66,8 +66,8 @@ int main()
     Node *root = NULL;
 
     root = buildTree(root);
-    int res = findFast(root, 9);
-    cout << "The fast of the given node of the BST is " << res;
+    int res = findFast(root, 3);
+    cout << "The floor of the given node of the BST is " << res;
 
     return 0;
 }

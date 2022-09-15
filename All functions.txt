@@ -1,6 +1,8 @@
 saecomp11
 saber1234
 saver1234
+BFS Travels always in the Shortest Path
+
 Inorder Traversal Print the BST in a Sorted Order
 If something is passed with reference then there iis no need to return
 If it is passed by reference then we are keeping track of all its value

@@ -121,7 +121,7 @@ int main()
     LevelOrderTraversal(root);
     cout << endl;
     cout << "After Inserting " << endl;
-    Node *res = insertIntoBST(root, 12);
+    Node *res = insertIntoBST(root, 9);
     cout << res->data;
     LevelOrderTraversal(root);
     return 0;
