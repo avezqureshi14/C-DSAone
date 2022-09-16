@@ -1,6 +1,5 @@
 //   First divide our array into two parts by finding the mid then check whether our array is sorted (Consider left part is sorted) and then find the element in that part of the array , if the element is not present in the array discard left part and try searching in the right part
-#include <bits/stdc++.h>
-
+#include <bits/stdc++.h>  
 using namespace std;
 
 void print(int arr[], int n)
