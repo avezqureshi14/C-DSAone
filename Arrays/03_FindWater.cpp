@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
-
+//Ques : Find Water(Two Pointers)
+//Three variable low,high,left_max,right_max, Remember to do decrement and increment in low and high ,                                water = left_max/right_max - arr[low]/arr[high] 
 int findWater(int arr[], int n)
 {
     int low = 0;

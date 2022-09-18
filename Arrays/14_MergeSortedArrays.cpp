@@ -2,6 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 // Speciality of this question here they had given whitespaces as 0's and we have to do implace merging of the array , we don't have to use any extra space
+//element insertion inside the array in reverse manner
 void MergeSorted(vector<int> &nums1, int m, vector<int> &nums2, int n)
 {
     int i = m - 1, j = n - 1, k = m + n - 1;

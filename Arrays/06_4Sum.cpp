@@ -2,6 +2,9 @@
 #include <algorithm>
 using namespace std;
 
+// Ques: Four Numbers on their addition we should get the given target 
+// Manage four variables and manage the duplicates
+
 vector<vector<int>> fourSum(vector<int> &num, int target)
 {
     vector<vector<int>> result;

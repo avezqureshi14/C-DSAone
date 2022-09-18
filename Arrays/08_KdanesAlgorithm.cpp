@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-
+//Just create numerous subarrays and go adding them 
 int MaximumSubarraySum(int arr[], int n){
     int final = INT_MIN;
     int curr_max = 0;

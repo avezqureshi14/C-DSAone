@@ -1,3 +1,6 @@
+//Ques: Lines se kitne baar maximum 1 aata
+//Jab i =  1  toh count++ nahi toh count = 0, max used to store maximum count
+
 #include <iostream>
 #include <bits/stdc++.h>
 using namespace std;

@@ -2,6 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 //Remember we don't have to change the order of the non zero element , i.e we cannot sort the array
+//Agar zero dikha toh ignore karo nahi toh swap karo 
 void MoveZeroes(vector<int>&nums){
     int nonZero = 0;
     for (int i = 0; i < nums.size(); i++)

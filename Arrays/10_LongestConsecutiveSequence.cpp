@@ -1,5 +1,4 @@
 #include <iostream>
-#include <algorithm>
 #include <bits/stdc++.h>
 
 //Lines kitne elements hai 

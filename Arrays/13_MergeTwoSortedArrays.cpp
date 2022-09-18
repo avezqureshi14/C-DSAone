@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
 
+//Takes Space Complexity O(m+n)
+//Pehle aur dusre array meh se joh element chota hai usko 3rd array meh dalo uske baad pehle aur dusre meh se joh element bache usko 3rd array meh dalo
 void Merge(int arr1[], int arr2[], int n, int m, int arr3[]){
     int i = 0, j = 0;
     int k = 0;
@@ -44,7 +46,7 @@ void print(int ans[], int n){
     cout<<endl;
     
 }
-
+ 
 int main()
 {
     int arr1[4] = {1,3,5,7};
