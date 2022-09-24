@@ -48,7 +48,7 @@ void pushAtend(Node**head_ref, int new_data)
     }
 
     last->next = new_node;
-}
+}//
 
 //Deletion In a Node
 void deleteNode(Node**head_ref,int key )
