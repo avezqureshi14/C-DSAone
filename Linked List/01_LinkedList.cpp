@@ -4,7 +4,7 @@ using namespace std;
 class Node{
 public:
     int data;
-    Node*next;
+    Node* next;
 };
 
 //Traversal
@@ -63,7 +63,7 @@ void deleteNode(Node**head_ref,int key )
         delete temp1;
         return;
     }
-
+//
     else
     {
         while (temp1 != NULL && temp1->data != key)
