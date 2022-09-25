@@ -16,7 +16,7 @@ void minNmax(int arr[], int n)
     if (n == 0)
     {
         cout<<"Empty array"<<endl;
-    }
+    }//
     if(n == 1)
     {
         min = arr[0];
