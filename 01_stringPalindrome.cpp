@@ -41,3 +41,4 @@ int main()
 //check karo kya left right se greater ya equal too hai agar hai toh return karo it is a palindrome
 // agar nahi toh agli condition par move karo ,ki kahi jo left aur right position par elements , kya woh dono unequal toh nahi agar unequal hai toh bolo it is not a palindrome
 // wahi firr function ko aage ke doh elements ke liye call karo  
+//commit
