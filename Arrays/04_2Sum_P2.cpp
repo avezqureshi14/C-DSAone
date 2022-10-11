@@ -21,7 +21,7 @@ vector<int> TwoSumP2(vector<int>nums,int target){
             left++;
         }
         else{
-            ans.push_back(nums[left]);
+            ans.push_back(nums[left]);g
             ans.push_back(nums[right]);
             break;
         }
